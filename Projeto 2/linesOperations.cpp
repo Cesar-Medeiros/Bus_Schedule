@@ -107,6 +107,7 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 
 		case 3:
 			editStopsDurations(lines, posLine);
+			break;
 
 
 		default:

@@ -15,26 +15,36 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 		switch (option) {
 
 
-		case 0: return;
+		case 0: 
+			return;
 
 		case 1:
-		{
+		{	
+			std::cout << std::endl;
 			for (unsigned int i = 0; i < lines.at(posLine).getBusStops().size(); i++)
 				cout << "Stop " << i + 1 << ": " << lines.at(posLine).getBusStop(i) << endl;
-
+			std::cout << std::endl;
 
 
 			//New stop
 			unsigned int stopIndex;
+			std::string name;
+
 			do {
 				readNum("Select the one to change: ", stopIndex, true);
 				stopIndex--;
-			} while (stopIndex < 1 || stopIndex >= lines.at(posLine).getBusStops().size());
+			} while (stopIndex < 0 || stopIndex >= lines.at(posLine).getBusStops().size());
 
 
-
+			colorCout('?');
+			std::cout << "Insira o nome da paragem : ";
+			std::cin >> name;
+			
+			lines.at(posLine).setBusStops(name, stopIndex);
 
 			//Correct the durations based on the new location
+
+
 
 			std::vector<unsigned int> indexToChange;
 
@@ -47,23 +57,65 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 
 
 			for (unsigned int i = 0; i < indexToChange.size()-1; i++) {
-				unsigned int i1 = indexToChange.at(0), i2 = indexToChange.at(1);
+				unsigned int i1 = indexToChange.at(i), i2 = indexToChange.at(i+1);
 				std::string text;
 				unsigned int duration;
 				text = "What's the time between " + lines.at(posLine).getBusStop(i1) + " and " + lines.at(posLine).getBusStop(i2) + ": ";
 				readNum(text.c_str(), duration, true);
-
+				lines.at(posLine).setTimings(duration, i1);
 			}
 
 			break;
 		}
 
+		case 2:
+		{
+			std::cout << std::endl;
+			for (unsigned int i = 0; i < lines.at(posLine).getTimings().size(); i++)
+				cout << "Time " << i + 1 << ": " << lines.at(posLine).getTiming(i) << endl;
+			std::cout << std::endl;
+
+			unsigned int timeIndex;
+			do {
+				readNum("Select the one to change: ", timeIndex, true);
+				timeIndex--;
+			} while (timeIndex < 0 || timeIndex >= lines.at(posLine).getTimings().size());
+
+			unsigned int time;
+			readNum("New time: ", time);
+
+			lines.at(posLine).setTimings(time, timeIndex);
+
+			break;
+
+		}
 		
+		case 3:
+			colorCout('?');
+			cout << "Insert new Bus Stops: " << endl << endl;
+			
+			std::string busStop;
+			std::vector <std::string> busStopList;
+
+			while (std::cout << " --> ", getline(std::cin, busStop), busStop != "") {
+				busStopList.push_back(busStop);
+			}
 		
-		
-		
-		
-		
+			lines.at(posLine).setBusStops(busStopList);
+
+
+			std::vector <int> timeList;
+
+			for (unsigned int i = 0; i < lines.at(posLine).getBusStops().size()-1; i++) {
+				std::string text;
+				unsigned int duration;
+				text = "What's the time between " + lines.at(posLine).getBusStop(i) + " and " + lines.at(posLine).getBusStop(i+1) + ": ";
+				readNum(text.c_str(), duration, true);
+				timeList.push_back(duration);
+			}
+
+			lines.at(posLine).setTimings(timeList);
+			break;
 		}
 
 	} while (true);

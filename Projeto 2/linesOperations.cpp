@@ -2,6 +2,7 @@
 
 void insertBusStops(Line &line);
 void insertTime(Line &line);
+void editStopsDurations(std::vector<Line> &lines, unsigned int posLine);
 
 
 void addLine(const std::string &fileName, std::vector<Line> &lines) {
@@ -44,13 +45,12 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 
 
 
-	std::cout << "\n\n|              Alterar linha             |\n";
+	std::cout << "\n\n|               Edit Lines               |\n";
 	std::cout << "|----------------------------------------|\n";
 	std::cout << "|     (1)  ID                            |\n";
-	std::cout << "|     (2)  Frequencia                    |\n";
-	std::cout << "|     (3)  Paragens                      |\n";
-	std::cout << "|     (4)  Tempo entre paragens          |\n";
-	std::cout << "|     (0)  Voltar Gerir linhas           |\n\n";
+	std::cout << "|     (2)  Frequency                     |\n";
+	std::cout << "|     (3)  Stops/Durations               |\n";
+	std::cout << "|     (0)  Go Back                       |\n\n";
 
 	bool validNumber;
 
@@ -81,7 +81,7 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 			lines.at(posLine).setFreq(freq);
 			break;
 
-
+/*
 		case 3: {
 			
 			std::string busStop;
@@ -102,79 +102,11 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 
 		case 4:
 			insertTime(lines.at(posLine));
-			break;
+			break;*/
 
 
-		case 5:
-		{
-			//Fazer em forma de funcao
-			do {
-				std::cout << "\n\n|              Stops/Durations              |\n";
-				std::cout << "|-------------------------------------------|\n";
-				std::cout << "|     (1)  Change a stop                    |\n";
-				std::cout << "|     (2)  Correct a duration between stops |\n";
-				std::cout << "|     (3)  Change every stop/duration       |\n";
-				std::cout << "|     (0)  Go back                          |\n\n";
-
-				int option = readOption();
-
-				switch (option) {
-				case 0: return;
-				case 1:
-				{
-					for (unsigned int i = 0; i < lines.at(posLine).getBusStops().size(); i++)
-						cout << "Stop " << i + 1 << ": " << lines.at(posLine).getBusStop(i) << endl;
-
-
-
-					//New stop
-					unsigned int stopIndex;
-					do {
-						readNum("Select the one to change: ", stopIndex, true);
-						stopIndex--;
-					} while (stopIndex < 1 || stopIndex >= lines.at(posLine).getBusStops().size());
-
-
-
-
-					//Correct the durations based on the new location
-
-					if (stopIndex == 0)
-					{
-						std::string text;
-						unsigned int duration;
-						text = "What's the time between " + lines.at(posLine).getBusStop(stopIndex) + " and " + lines.at(posLine).getBusStop(stopIndex + 1) + ": ";
-						readNum(text.c_str(), duration, true);
-					}
-
-					else if (stopIndex == lines.at(posLine).getTimings().size() - 1)
-					{
-						std::string text;
-						unsigned int duration;
-						unsigned int lastPos = lines.at(posLine).getTimings().size() - 1;
-						text = "What's the time between " + lines.at(posLine).getBusStop(lastPos - 1) + " and " + lines.at(posLine).getBusStop(lastPos) + ": ";
-						readNum(text.c_str(), duration, true);
-					}
-
-					else
-					{
-						std::string text;
-						unsigned int duration1;
-						text = "What's the time between " + lines.at(posLine).getBusStop(stopIndex - 1) + " and " + lines.at(posLine).getBusStop(stopIndex) + ": ";
-						readNum(text.c_str(), duration1, true);
-
-						unsigned int duration2;
-						text = "What's the time between " + lines.at(posLine).getBusStop(stopIndex) + " and " + lines.at(posLine).getBusStop(stopIndex + 1) + ": ";
-						readNum(text.c_str(), duration2, true);
-					}
-
-					break;
-				}
-
-				}
-
-			} while (true);
-		}
+		case 3:
+			editStopsDurations(lines, posLine);
 
 
 		default:

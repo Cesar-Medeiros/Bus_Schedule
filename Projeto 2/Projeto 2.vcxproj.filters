@@ -87,7 +87,7 @@
     <ClCompile Include="driversOperations.cpp">
       <Filter>Source Files\Drivers</Filter>
     </ClCompile>
-    <ClCompile Include="editLinecpp.cpp">
+    <ClCompile Include="editStopsDurations.cpp">
       <Filter>Source Files\Lines</Filter>
     </ClCompile>
   </ItemGroup>

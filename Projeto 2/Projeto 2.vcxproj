@@ -144,7 +144,7 @@
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="driversOperations.cpp" />
     <ClCompile Include="driversManager.cpp" />
-    <ClCompile Include="editLinecpp.cpp" />
+    <ClCompile Include="editStopsDurations.cpp" />
     <ClCompile Include="Input_Color.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="linesElements.cpp" />

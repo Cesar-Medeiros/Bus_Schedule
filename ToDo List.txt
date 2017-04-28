@@ -1,0 +1,1 @@
+-Adicionar função já feita linesWithStop ao programa  (7. Inquirir sobre quais as linhas que incluem determinada paragem)

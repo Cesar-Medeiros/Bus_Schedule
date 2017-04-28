@@ -90,6 +90,9 @@
     <ClCompile Include="editStopsDurations.cpp">
       <Filter>Source Files\Lines</Filter>
     </ClCompile>
+    <ClCompile Include="linesWithStop.cpp">
+      <Filter>Source Files\Lines</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">

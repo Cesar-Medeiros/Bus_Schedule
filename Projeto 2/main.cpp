@@ -23,6 +23,7 @@ int main() {
 
 
 	//Nome dos ficheiros
+	/*
 	colorCout('?');
 	std::cout << "Introduza o nome do ficheiro de linhas (nome.txt): ";
 	std::cin >> linesFile;
@@ -30,11 +31,16 @@ int main() {
 	std::cout << "Introduza o nome do ficheiro de condutores (nome.txt): ";
 	std::cin >> driversFile;
 	std::cout << std::endl;
+	*/
 
+
+	linesFile = "linhas.txt";
+	driversFile = "condutores.txt";
 
 
 
 	//Se o ficheiro introduzido nao existe e o utilizador nao o quer criar - condicao é verdadeira
+
 
 	if (openFile(linesFile, driversFile) == 1) {
 		std::cout << std::endl;

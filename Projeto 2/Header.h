@@ -16,6 +16,12 @@
 //*********************************************************
 
 
+struct par {
+	uint linha;
+	uint posicao1;
+	uint posicao2;
+	uint tempo;
+};
 
 
 //Tipos de dados

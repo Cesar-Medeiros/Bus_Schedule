@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Drivers">
       <UniqueIdentifier>{4da099e9-3ac2-4a9d-a217-bf06c0ce0b48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Visualize">
+      <UniqueIdentifier>{9498bb75-aa2f-4676-a38d-c2cf346ff9bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="editStopsDurations.cpp">
       <Filter>Source Files\Lines</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizar.cpp">
+      <Filter>Source Files\Visualize</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

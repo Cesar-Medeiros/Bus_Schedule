@@ -44,10 +44,15 @@ void readLines(vector<Line> &lines, string fileName) {
 
 		do {
 			commaPos = busStopText.find_first_of(',');
+			int poss = std::string::npos;
 			string stopTemp = busStopText.substr(0, busStopText.find_first_of(','));
+
+			stopTemp = stopTemp.substr(stopTemp.find_first_not_of(' '), stopTemp.find_last_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") + 1);
+
 			busStopText = busStopText.substr(commaPos + 2);
 			busStops.push_back(stopTemp);
-		} while (commaPos != string::npos);
+
+		} while (commaPos != 4294967295);
 
 		
 
@@ -63,7 +68,7 @@ void readLines(vector<Line> &lines, string fileName) {
 			string timeBetween = timeText.substr(0, timeText.find_first_of(','));
 			timeText = timeText.substr(commaPos + 2);
 			times.push_back(stoi(timeBetween));
-		} while (commaPos != string::npos);
+		} while (commaPos != 4294967295);
 
 
 //Gravar tudo no vetor lines

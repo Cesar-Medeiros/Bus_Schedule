@@ -154,6 +154,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Notepad.cpp" />
     <ClCompile Include="openFile.cpp" />
+    <ClCompile Include="printSchedule.cpp" />
     <ClCompile Include="readDrivers.cpp" />
     <ClCompile Include="readLines.cpp" />
     <ClCompile Include="Shift.cpp" />

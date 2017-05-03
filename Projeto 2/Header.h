@@ -16,14 +16,6 @@
 //*********************************************************
 
 
-struct par {
-	uint linha;
-	uint posicao1;
-	uint posicao2;
-	uint tempo;
-};
-
-
 //Tipos de dados
 //*********************************************************
 typedef unsigned int uint;
@@ -67,6 +59,7 @@ void linesManager(std::string fileName, std::vector<Line> &lines);
 
 void driversManager(std::string fileName, std::vector<Driver> &drivers);
 
+void visualizeInfo(const std::vector<Line> &lines);
 
 //Tratamento input utilizador
 //**************************************************

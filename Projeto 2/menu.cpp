@@ -32,7 +32,7 @@ void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, const std::str
 			switch (option) {
 			case 1: linesManager(linesFile, lines); break;
 			case 2: driversManager(driversFile, drivers); break;
-			//case 3: visualizarInformacao(lines); break;
+			case 3: visualizeInfo(lines); break;
 			case 4: openNotepad(lines, linesFile);break;
 			case 5: openNotepad(drivers, driversFile);break;
 			case 0: return; //Unica maneira de sair

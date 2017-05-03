@@ -1,15 +1,15 @@
 #include "Header.h"
 #include "string"
 
-void printHorarioLinha(const std::vector<Line> &line, int posLine);
-void printHorarioParagem(const std::vector<Line> &line);
-void tempoEntreParagens(const std::vector<Line> &line);
+void printSchedule(const std::vector<Line> &line, int posLine);
+//void printHorarioParagem(const std::vector<Line> &line);
+//void tempoEntreParagens(const std::vector<Line> &line);
 void mostrarLinha(const std::vector<Line> &line);
 void procuraParagem(const std::vector<Line> &line);
 
 
 
-void visualizarInformacao(const std::vector<Line> &linha) {
+void visualizeInfo(const std::vector<Line> &lines) {
 
 
 
@@ -38,14 +38,14 @@ void visualizarInformacao(const std::vector<Line> &linha) {
 			case 0: return;
 
 			case 1: {
-				int posLine = ask_TestID(linha);
+				int posLine = ask_TestID(lines);
 
 				if (posLine == -1) { //Linha nao foi encontrada
 					colorCout('!');
 					std::cout << "Nao foi possivel apresentar o horario da linha que introduziu." << std::endl;
 				}
 				else {
-					printHorarioLinha(linha, posLine);
+					printSchedule(lines, posLine);
 					std::cout << "\nClique em qualquer tecla para continuar";
 					getchar();
 				}
@@ -53,23 +53,23 @@ void visualizarInformacao(const std::vector<Line> &linha) {
 			}
 
 			case 2:
-				printHorarioParagem(linha);
+				//printHorarioParagem(lines);
 				break;
 
 			case 3:
-				tempoEntreParagens(linha);
+				//tempoEntreParagens(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
 				break;
 
 			case 4:
-				mostrarLinha(linha);
+				mostrarLinha(lines);
 				std::cout << "\n\nClique em qualquer tecla para continuar";
 				getchar();
 				break;
 
 			case 5:
-				procuraParagem(linha);
+				procuraParagem(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
 				break;
@@ -141,7 +141,7 @@ void mostrarLinha(const std::vector<Line> &lines) {
 	}
 }
 
-
+/*
 std::vector<par> posicaoParagem(const std::vector<Line> &lines, std::string stopName)
 {
 	std::vector<par> listaID;
@@ -151,11 +151,12 @@ std::vector<par> posicaoParagem(const std::vector<Line> &lines, std::string stop
 		for (uint j = 0; j < lines.at(i).getBusStops().size(); j++) {
 			if (lines.at(i).getBusStop(j) == stopName) {
 				par par;
-				par.linha = i;
+				par.linha1 = i;
 				par.posicao1 = j;
 				listaID.push_back(par);
 				break; //Encontra 1 elemento igual
 			}
+
 		}
 
 	}
@@ -163,17 +164,17 @@ std::vector<par> posicaoParagem(const std::vector<Line> &lines, std::string stop
 	return listaID;
 }
 
-//Pergunta o nome de duas paragens, verifica se estao na mesma linha e se isso se verificar devolve o tempo entre paragens
+//Pergunta o nome de duas paragens, verifica se estao na mesma lines e se isso se verificar devolve o tempo entre paragens
 void tempoEntreParagens(const std::vector<Line> &lines) {
 
 
 	std::string paragem1, paragem2;
+
 	std::cout << "Insira o nome da primeira paragem: ";
 	getline(std::cin, paragem1);
+
 	std::cout << "Insira o nome da segunda paragem: ";
 	getline(std::cin, paragem2);
-
-
 
 	std::vector<par> paragem1LinhasID = posicaoParagem(lines, paragem1);
 	std::vector<par> paragem2LinhasID = posicaoParagem(lines, paragem2);
@@ -183,7 +184,7 @@ void tempoEntreParagens(const std::vector<Line> &lines) {
 
 		for (uint j = 0; j < paragem2LinhasID.size(); j++) {
 
-			if (paragem1LinhasID.at(i).linha == paragem2LinhasID.at(j).linha) {
+			if (paragem1LinhasID.at(i).linha1 == paragem2LinhasID.at(j).linha1) {
 
 
 				//Tentar por mais legivel
@@ -209,14 +210,14 @@ void tempoEntreParagens(const std::vector<Line> &lines) {
 		int tempo = 0;
 
 		for (uint j = linhasComum.at(i).posicao1; j < linhasComum.at(i).posicao2; j++) {
-			tempo += lines.at(linhasComum.at(i).linha).getTiming(j);
+			tempo += lines.at(linhasComum.at(i).linha1).getTiming(j);
 		}
 		linhasComum.at(i).tempo = tempo;
 
 	}
 	if (linhasComum.size() == 0) {
 		colorCout('!');
-		std::cout << "As paragens introduzidas nao se encontram na mesma linha";
+		std::cout << "As paragens introduzidas nao se encontram na mesma lines";
 	}
 
 	else
@@ -225,7 +226,7 @@ void tempoEntreParagens(const std::vector<Line> &lines) {
 
 		for (uint i = 0; i < linhasComum.size(); i++) {
 
-			std::cout << "Linha " << linhasComum.at(i).linha << ": ";
+			std::cout << "Linha " << linhasComum.at(i).linha1 << ": ";
 			std::cout << linhasComum.at(i).tempo << " minutos." << std::endl;
 		}
 
@@ -233,4 +234,4 @@ void tempoEntreParagens(const std::vector<Line> &lines) {
 
 
 	//linhasComum.at(0).tempo; //Alterar, criar algoritmo para dar o menor tempo;
-}
+}*/

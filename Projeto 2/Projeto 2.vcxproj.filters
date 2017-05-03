@@ -96,6 +96,9 @@
     <ClCompile Include="visualizar.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
+    <ClCompile Include="printSchedule.cpp">
+      <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">

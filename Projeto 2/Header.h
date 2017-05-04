@@ -26,7 +26,7 @@ typedef unsigned int uint;
 #include "Driver.h"
 #include "Line.h"
 #include "Shift.h"
-
+#include "Time.h"
 
 //*********************************************************
 
@@ -60,6 +60,8 @@ void linesManager(std::string fileName, std::vector<Line> &lines);
 void driversManager(std::string fileName, std::vector<Driver> &drivers);
 
 void visualizeInfo(const std::vector<Line> &lines);
+
+void timeBetweenStops(const std::vector<Line> &lines);
 
 //Tratamento input utilizador
 //**************************************************

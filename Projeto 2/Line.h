@@ -41,4 +41,6 @@ public:
 
 	// other methods
 
+	unsigned int timeLine();
+
 };

@@ -61,3 +61,13 @@ void Line::setBusStops(string busStop, unsigned int index) {
 void Line::setTimings(int time, unsigned int index) {
 	timesList.at(index) = time;
 }
+
+unsigned int Line::timeLine() {
+
+	unsigned int time = 0;
+	for (unsigned int i = 0; i < timesList.size(); i++) {
+		time += timesList.at(i);
+	}
+
+	return time;
+}

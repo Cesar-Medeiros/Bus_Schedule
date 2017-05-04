@@ -93,10 +93,19 @@
     <ClCompile Include="editStopsDurations.cpp">
       <Filter>Source Files\Lines</Filter>
     </ClCompile>
-    <ClCompile Include="visualizar.cpp">
+    <ClCompile Include="printSchedule.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
-    <ClCompile Include="printSchedule.cpp">
+    <ClCompile Include="printStopSchedule.cpp">
+      <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizeInfo.cpp">
+      <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizeAuxFunc.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

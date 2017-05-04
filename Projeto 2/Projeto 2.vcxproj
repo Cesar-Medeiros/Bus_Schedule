@@ -155,11 +155,14 @@
     <ClCompile Include="Notepad.cpp" />
     <ClCompile Include="openFile.cpp" />
     <ClCompile Include="printSchedule.cpp" />
+    <ClCompile Include="printStopSchedule.cpp" />
     <ClCompile Include="readDrivers.cpp" />
     <ClCompile Include="readLines.cpp" />
     <ClCompile Include="Shift.cpp" />
     <ClCompile Include="templateFunc.cpp" />
-    <ClCompile Include="visualizar.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="visualizeAuxFunc.cpp" />
+    <ClCompile Include="visualizeInfo.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
     <ClCompile Include="WriteDrivers.cpp" />
     <ClCompile Include="writeLines.cpp" />
@@ -171,6 +174,7 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Shift.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,7 +33,6 @@ int main() {
 	std::cout << std::endl;
 	*/
 
-
 	linesFile = "linhas.txt";
 	driversFile = "condutores.txt";
 

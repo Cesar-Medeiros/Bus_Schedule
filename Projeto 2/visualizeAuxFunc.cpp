@@ -166,3 +166,60 @@ void printCentered(std::ostream& out, const std::string info, const unsigned int
 	}
 	else out << info;
 }
+
+
+
+void timeBetween2Stops(const std::vector<Line> &lines) {
+
+
+
+	std::string busStopName1, busStopName2;
+	colorCout('?');
+	std::cout << "Introduza o nome da paragem da primeira paragem: ";
+	getline(std::cin, busStopName1);
+
+
+
+	colorCout('?');
+	std::cout << "Introduza o nome da segunda da primeira paragem: ";
+	getline(std::cin, busStopName2);
+
+	std::vector<int> idLineList;
+
+	for (uint i = 0; i < lines.size(); i++) {
+
+		for (uint j = 0; j < lines.at(i).getBusStops().size(); j++) {
+
+			if (busStopName1 == lines.at(i).getBusStop(j)) {
+				idLineList.push_back(lines.at(i).getId());
+				break;
+			}
+		}
+	}
+
+	if (idLineList.size() == 0) {
+		colorCout('!');
+		std::cout << "Nao foram encontradas paragens com nome: " << busStopName1 << std::endl;
+		return;
+	}
+
+	for (uint i = 0; i < idLineList.size(); i++) {
+
+		std::vector<std::string> listBusStops = lines.at(idLineList.at(i)).getBusStops();
+
+		for (uint j = 0; j < listBusStops.size(); j++) {
+
+			if (listBusStops.at(j) == busStopName1) {
+
+			}
+
+
+
+		}
+
+	}
+
+
+
+
+}

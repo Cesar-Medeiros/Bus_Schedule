@@ -1,5 +1,5 @@
 #include "Header.h"
-
+bool timeBet2StopsAux(const std::vector<Line> &lines, std::string busStopName1, std::string busStopName2);
 
 void searchBusStop(const std::vector<Line> &lines) {
 
@@ -183,7 +183,7 @@ void timeBetween2Stops(const std::vector<Line> &lines) {
 	colorCout('?');
 	std::cout << "Introduza o nome da segunda da primeira paragem: ";
 	getline(std::cin, busStopName2);
-
+	timeBet2StopsAux(lines, busStopName1, busStopName2);
 	
 }
 
@@ -213,7 +213,7 @@ bool timeBet2StopsAux(const std::vector<Line> &lines, std::string busStopName1, 
 
 		for (uint j = 0; j < listBusStops.size(); j++) {
 
-			if (listBusStops.at(j) == busStopName1) {
+			if (listBusStops.at(j) == busStopName2) {
 				//Debug
 				std::cout << "Encontrou" << listBusStops.at(j) << "- linha de index " << i;
 				return true;

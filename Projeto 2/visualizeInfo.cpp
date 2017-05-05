@@ -1,6 +1,8 @@
 #include "Header.h"
 #include "string"
 
+void timeBetween2Stops(const std::vector<Line> &lines);
+
 void printSchedule(const std::vector<Line> &line, int posLine);
 void printStopSchedule(const std::vector<Line> &lines);
 //void tempoEntreParagens(const std::vector<Line> &lines);
@@ -73,6 +75,10 @@ void visualizeInfo(const std::vector<Line> &lines) {
 				searchBusStop(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
+				break;
+
+			case 6:
+				timeBetween2Stops(lines);
 				break;
 
 			default: validNumber = false;

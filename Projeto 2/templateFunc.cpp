@@ -9,8 +9,6 @@
 //estruturaTemp e' uma variavel do tipo linhaStruct ou condutorStruct
 
 
-
-
 /**
 Le o ID e verifica se ja se encontra no vetor
 @param estruturaTemp estrutura Struct onde vai ser guardado o id e o vetor onde vai procurar o id.
@@ -39,7 +37,6 @@ template <class T> void readID(T &classVar, const std::vector<T> &vec) {
 
 	classVar.setId(id);
 }
-
 
 
 /**
@@ -101,8 +98,6 @@ template <class T> int ask_TestID(const std::vector<T> &vect) {
 }
 
 
-
-
 /**
 Insere uma linha ou condutor(estruturaTemp) por ordem do ID num vetor estrutura
 @param estruturaTemp estrutura 1o - Struct onde se encontrar o id, 2o - Vetor onde se vai inserir a estruturaTemp.
@@ -123,6 +118,7 @@ template <class T> void sortID(T &classVar, std::vector<T> &vect) {
 	if (!insertID)
 		vect.push_back(classVar);
 }
+
 
 template <class T> void sortID(std::vector<T> &vect) {
 

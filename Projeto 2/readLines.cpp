@@ -44,9 +44,14 @@ void readLines(vector<Line> &lines, string fileName) {
 
 		do {
 			commaPos = busStopText.find_first_of(',');
+			int poss = std::string::npos;
 			string stopTemp = busStopText.substr(0, busStopText.find_first_of(','));
+
+			stopTemp = stopTemp.substr(stopTemp.find_first_not_of(' '), stopTemp.find_last_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") + 1);
+
 			busStopText = busStopText.substr(commaPos + 2);
 			busStops.push_back(stopTemp);
+
 		} while (commaPos != 4294967295);
 
 		

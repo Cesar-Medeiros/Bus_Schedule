@@ -159,6 +159,7 @@
     <ClCompile Include="readLines.cpp" />
     <ClCompile Include="Shift.cpp" />
     <ClCompile Include="templateFunc.cpp" />
+    <ClCompile Include="visualizar.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
     <ClCompile Include="WriteDrivers.cpp" />
     <ClCompile Include="writeLines.cpp" />

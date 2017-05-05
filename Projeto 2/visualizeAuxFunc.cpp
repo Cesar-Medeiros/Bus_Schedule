@@ -155,7 +155,7 @@ std::cout << linhasComum.at(i).tempo << " minutos." << std::endl;
 
 void printCentered(std::ostream& out, const std::string info, const unsigned int sizew) {
 
-	int w = info.length();
+	unsigned int w = info.length();
 	if (sizew > w) {
 
 		int delta = (sizew - w) / 2;
@@ -184,42 +184,48 @@ void timeBetween2Stops(const std::vector<Line> &lines) {
 	std::cout << "Introduza o nome da segunda da primeira paragem: ";
 	getline(std::cin, busStopName2);
 
-	std::vector<int> idLineList;
+	
+}
+
+bool timeBet2StopsAux(const std::vector<Line> &lines, std::string busStopName1, std::string busStopName2) {
+	std::vector<int> indexLineList;
 
 	for (uint i = 0; i < lines.size(); i++) {
 
 		for (uint j = 0; j < lines.at(i).getBusStops().size(); j++) {
 
 			if (busStopName1 == lines.at(i).getBusStop(j)) {
-				idLineList.push_back(lines.at(i).getId());
+				indexLineList.push_back(i);
 				break;
 			}
 		}
 	}
 
-	if (idLineList.size() == 0) {
+	if (indexLineList.size() == 0) {
 		colorCout('!');
 		std::cout << "Nao foram encontradas paragens com nome: " << busStopName1 << std::endl;
-		return;
+		return false;
 	}
 
-	for (uint i = 0; i < idLineList.size(); i++) {
-
-		std::vector<std::string> listBusStops = lines.at(idLineList.at(i)).getBusStops();
+	for (uint i = 0; i < indexLineList.size(); i++) {
+		
+		std::vector<std::string> listBusStops = lines.at(indexLineList.at(i)).getBusStops();
 
 		for (uint j = 0; j < listBusStops.size(); j++) {
 
 			if (listBusStops.at(j) == busStopName1) {
-
+				//Debug
+				std::cout << "Encontrou" << listBusStops.at(j) << "- linha de index " << i;
+				return true;
 			}
 
+		}
 
+		for (uint k = 0; k < listBusStops.size(); k++){
+			if (timeBet2StopsAux(lines, listBusStops.at(k), busStopName2))
+				return true;
 
 		}
 
 	}
-
-
-
-
 }

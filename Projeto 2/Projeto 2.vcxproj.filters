@@ -108,6 +108,9 @@
     <ClCompile Include="visualizeAuxFunc.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
+    <ClCompile Include="timeBetweenStops.cpp">
+      <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">

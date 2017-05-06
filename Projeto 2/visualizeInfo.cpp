@@ -1,9 +1,10 @@
 #include "Header.h"
 #include "string"
 
+void timeBetween2Stops(const std::vector<Line> &lines);
+
 void printSchedule(const std::vector<Line> &line, int posLine);
 void printStopSchedule(const std::vector<Line> &lines);
-//void tempoEntreParagens(const std::vector<Line> &lines);
 void showLine(const std::vector<Line> &line);
 void searchBusStop(const std::vector<Line> &line);
 void printCentered(std::ostream& out, const std::string info, const unsigned int sizew);
@@ -58,7 +59,7 @@ void visualizeInfo(const std::vector<Line> &lines) {
 				break;
 
 			case 3:
-				//tempoEntreParagens(lines);
+				timeBetweenStops(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
 				break;
@@ -75,9 +76,7 @@ void visualizeInfo(const std::vector<Line> &lines) {
 				getchar();
 				break;
 
-			case 6:
-				timeBetweenStops(lines);
-				break;
+
 			default: validNumber = false;
 			}
 

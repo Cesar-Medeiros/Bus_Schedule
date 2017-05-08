@@ -1,6 +1,4 @@
 #include "Header.h"
-
-
 void searchBusStop(const std::vector<Line> &lines) {
 
 	std::string busStopName;
@@ -57,105 +55,9 @@ void showLine(const std::vector<Line> &lines) {
 	}
 }
 
-/*
-std::vector<par> posicaoParagem(const std::vector<Line> &lines, std::string stopName)
-{
-std::vector<par> listaID;
-
-for (uint i = 0; i < lines.size(); i++) {
-
-for (uint j = 0; j < lines.at(i).getBusStops().size(); j++) {
-if (lines.at(i).getBusStop(j) == stopName) {
-par par;
-par.linha1 = i;
-par.posicao1 = j;
-listaID.push_back(par);
-break; //Encontra 1 elemento igual
-}
-
-}
-
-}
-
-return listaID;
-}
-
-//Pergunta o nome de duas paragens, verifica se estao na mesma lines e se isso se verificar devolve o tempo entre paragens
-void tempoEntreParagens(const std::vector<Line> &lines) {
-
-
-std::string paragem1, paragem2;
-
-std::cout << "Insira o nome da primeira busStopName: ";
-getline(std::cin, paragem1);
-
-std::cout << "Insira o nome da segunda busStopName: ";
-getline(std::cin, paragem2);
-
-std::vector<par> paragem1LinhasID = posicaoParagem(lines, paragem1);
-std::vector<par> paragem2LinhasID = posicaoParagem(lines, paragem2);
-std::vector<par> linhasComum;
-
-for (uint i = 0; i < paragem1LinhasID.size(); i++) {
-
-for (uint j = 0; j < paragem2LinhasID.size(); j++) {
-
-if (paragem1LinhasID.at(i).linha1 == paragem2LinhasID.at(j).linha1) {
-
-
-//Tentar por mais legivel
-if (paragem1LinhasID.at(i).posicao1 < paragem2LinhasID.at(j).posicao1)
-paragem1LinhasID.at(i).posicao2 = paragem2LinhasID.at(j).posicao1;
-
-else {
-paragem1LinhasID.at(i).posicao2 = paragem1LinhasID.at(i).posicao1;
-paragem1LinhasID.at(i).posicao1 = paragem2LinhasID.at(j).posicao1; //Aproveitar estrutura 1 para colocar os id de ambas as paragens;
-}
-
-linhasComum.push_back(paragem1LinhasID.at(i));
-break;
-
-}
-
-}
-}
-
-
-for (uint i = 0; i < linhasComum.size(); i++) {
-
-int tempo = 0;
-
-for (uint j = linhasComum.at(i).posicao1; j < linhasComum.at(i).posicao2; j++) {
-tempo += lines.at(linhasComum.at(i).linha1).getTiming(j);
-}
-linhasComum.at(i).tempo = tempo;
-
-}
-if (linhasComum.size() == 0) {
-colorCout('!');
-std::cout << "As paragens introduzidas nao se encontram na mesma lines";
-}
-
-else
-{
-std::cout << "\nTempo entre " << paragem1 << " e " << paragem2 << " = ";
-
-for (uint i = 0; i < linhasComum.size(); i++) {
-
-std::cout << "Linha " << linhasComum.at(i).linha1 << ": ";
-std::cout << linhasComum.at(i).tempo << " minutos." << std::endl;
-}
-
-}
-
-
-//linhasComum.at(0).tempo; //Alterar, criar algoritmo para dar o menor tempo;
-}*/
-
-
 void printCentered(std::ostream& out, const std::string info, const unsigned int sizew) {
 
-	int w = info.length();
+	unsigned int w = info.length();
 	if (sizew > w) {
 
 		int delta = (sizew - w) / 2;
@@ -169,15 +71,16 @@ void printCentered(std::ostream& out, const std::string info, const unsigned int
 
 
 
+
 //printConnection
-//Imprime ligações
+//Imprime ligaï¿½ï¿½es
 void printConnection(connectionInfo connection)
 {
 	cout << connection.line << "--" << connection.time << " -- " << connection.stop << endl;
 }
 
 //stopsWithConnection
-//retorna um vetor de ligações com a paragem stop, ignorando possiveis ligações com a paragem lastStop
+//retorna um vetor de ligaï¿½ï¿½es com a paragem stop, ignorando possiveis ligaï¿½ï¿½es com a paragem lastStop
 std::vector<connectionInfo> stopsWithConnection(std::string stop, std::string lastStop, const std::vector<Line> &lines)
 {
 	std::vector<connectionInfo> connections;
@@ -290,7 +193,7 @@ void printPath(vector <connectionInfo> path)
 }
 
 //validPaths
-//Retorna um vetor com os index de caminhos que já tenham chegado ao destino
+//Retorna um vetor com os index de caminhos que jï¿½ tenham chegado ao destino
 vector<int> validPaths(vector < vector <connectionInfo>> paths, std::string finalPosition)
 {
 	vector <int> validPaths;
@@ -306,7 +209,7 @@ vector<int> validPaths(vector < vector <connectionInfo>> paths, std::string fina
 }
 
 //updateValidPaths
-//No ciclo da função teste ao adicionar caminhos completos ao vetor respetivo, temos de os remover, no entanto quando removemos um 
+//No ciclo da funï¿½ï¿½o teste ao adicionar caminhos completos ao vetor respetivo, temos de os remover, no entanto quando removemos um 
 //index inferior a outros que venham a seguir temos de decrementar os seguintes, serve como um remendo para isso
 vector < int> updateIndexValidPaths(vector<int> indexValidPaths, int  index)
 {
@@ -331,7 +234,7 @@ int pathTime(vector <connectionInfo> path)
 }
 
 //longerPath
-//Retorna um vetor que contem a informação do index e tempo do caminho mais lento
+//Retorna um vetor que contem a informaï¿½ï¿½o do index e tempo do caminho mais lento
 vector<int> longerPath(vector < vector <connectionInfo>> bestPaths)
 {
 	int longerPath = 0;
@@ -352,7 +255,7 @@ vector<int> longerPath(vector < vector <connectionInfo>> bestPaths)
 }
 
 //RemoveSlowerPaths
-//Dando um vetor de caminhos, e um caminho completo, elimina do vetor de caminhos, os que são mais lentos que o completo
+//Dando um vetor de caminhos, e um caminho completo, elimina do vetor de caminhos, os que sï¿½o mais lentos que o completo
 vector < vector <connectionInfo>> removeSlowerPaths(vector < vector <connectionInfo>> paths, vector <connectionInfo> completedPath)
 {
 	int minTime = pathTime(completedPath);
@@ -365,8 +268,8 @@ vector < vector <connectionInfo>> removeSlowerPaths(vector < vector <connectionI
 }
 
 //bestPaths
-//Retorna um vetor de 3 caminhos, os mais rápidos
-//Pode ser modificado para retornar mais ou até contabilizar perdas de tempo de mudanças de linha
+//Retorna um vetor de 3 caminhos, os mais rï¿½pidos
+//Pode ser modificado para retornar mais ou atï¿½ contabilizar perdas de tempo de mudanï¿½as de linha
 vector < vector <connectionInfo>> bestPaths(vector < vector <connectionInfo>> paths)
 {
 	vector < vector <connectionInfo>> bestPaths;
@@ -389,7 +292,7 @@ vector < vector <connectionInfo>> bestPaths(vector < vector <connectionInfo>> pa
 }
 
 //FasterCompleted
-//devolve o caminho mais rápido de um vetor de caminhos
+//devolve o caminho mais rï¿½pido de um vetor de caminhos
 vector <connectionInfo> fasterCompleted(vector < vector <connectionInfo>> paths)
 {
 	int minTime, iter;
@@ -425,11 +328,11 @@ void printFinalPaths(vector < vector <connectionInfo>> paths)
 }
 
 
-//Estado da função
-//falta compor a função de modo a mostrar a linha da primeira paragem, fácil de implementar
-//Contabilizar e aconselhar sobre atrasos de mudanças de linha, também não deve ser muito dificil
-//Se não encontrar caminho direto aconselhar a ir a pé parte do caminho? Dificil de implementar
-//Está funcional, agora é só otimizar
+//Estado da funï¿½ï¿½o
+//falta compor a funï¿½ï¿½o de modo a mostrar a linha da primeira paragem, fï¿½cil de implementar
+//Contabilizar e aconselhar sobre atrasos de mudanï¿½as de linha, tambï¿½m nï¿½o deve ser muito dificil
+//Se nï¿½o encontrar caminho direto aconselhar a ir a pï¿½ parte do caminho? Dificil de implementar
+//Estï¿½ funcional, agora ï¿½ sï¿½ otimizar
 //falta no cin das paragens aceitar paragens com mais do que uma palavra
 void teste(const std::vector<Line> &lines)
 {
@@ -447,10 +350,10 @@ void teste(const std::vector<Line> &lines)
 
 	connections = stopsWithConnection(firstStop, "", lines);
 
-	//Se não encontrou nenhuma conexão significa que não colocou uma paragem certa
-	if (connections.empty()) cout << "Não foram encontradas ligações com a paragem inicial inserida, secalhar a paragem não existe (fazer com parte a pé?) " << endl;
+	//Se nï¿½o encontrou nenhuma conexï¿½o significa que nï¿½o colocou uma paragem certa
+	if (connections.empty()) cout << "Nï¿½o foram encontradas ligaï¿½ï¿½es com a paragem inicial inserida, secalhar a paragem nï¿½o existe (fazer com parte a pï¿½?) " << endl;
 
-	//colocar no vetor de caminhos as ligações iniciais com a paragem inicial
+	//colocar no vetor de caminhos as ligaï¿½ï¿½es iniciais com a paragem inicial
 	vector < vector <connectionInfo>> paths;
 
 	for (int i = 0; i < connections.size(); i++)
@@ -471,7 +374,7 @@ void teste(const std::vector<Line> &lines)
 	{
 		vector <int > indexValidPaths = validPaths(paths, lastStop);
 
-		//adiciona algum caminho já completo
+		//adiciona algum caminho jï¿½ completo
 		//remove-os dos caminhos a serem calculados
 		if (!indexValidPaths.empty())
 		{
@@ -482,13 +385,13 @@ void teste(const std::vector<Line> &lines)
 				completedPaths.push_back(paths.at(indexValidPaths.at(i)));
 
 			}
-			//Remove os caminhos completos do vetor de caminhos, para não continuar a procurar opções
+			//Remove os caminhos completos do vetor de caminhos, para nï¿½o continuar a procurar opï¿½ï¿½es
 			for (int i = 0; i < indexValidPaths.size(); i++)
 			{
 				paths.erase(paths.begin() + indexValidPaths.at(i));
 				indexValidPaths = updateIndexValidPaths(indexValidPaths, i);
 			}
-			//remove os caminhos que já ultrapassam em tempo a pior solução, pode ter de ser otimizada, se a ligação for quase direta elimina todas as opções
+			//remove os caminhos que jï¿½ ultrapassam em tempo a pior soluï¿½ï¿½o, pode ter de ser otimizada, se a ligaï¿½ï¿½o for quase direta elimina todas as opï¿½ï¿½es
 			if (!completedPaths.empty())
 			{
 				paths = removeSlowerPaths(paths, fasterCompleted(completedPaths));
@@ -496,12 +399,12 @@ void teste(const std::vector<Line> &lines)
 
 		}
 
-		//Enquanto não tivermos, neste caso 3 soluções (pode ser mudado), vai procurar opções de caminhos
+		//Enquanto nï¿½o tivermos, neste caso 3 soluï¿½ï¿½es (pode ser mudado), vai procurar opï¿½ï¿½es de caminhos
 		if (completedPaths.size() < 3)
 		{
 			int count = paths.size();
 
-			//numa primeira iteração vê conexões, excluindo a paragem anterior, a inicial
+			//numa primeira iteraï¿½ï¿½o vï¿½ conexï¿½es, excluindo a paragem anterior, a inicial
 			if (iterations == 0)
 			{
 				int sizePaths = paths.size();
@@ -522,7 +425,7 @@ void teste(const std::vector<Line> &lines)
 				//limpa do vetor de caminhos os caminhos anteriores(quando se adiciona a um caminho de 2 paragens uma terceira, fica o vetor anterior de 2 no inicio, eliminam-se esses
 				paths = cleanPaths(paths, count);
 			}
-			//em iterações posteriores procura conexões, excluindo a paragem anterior
+			//em iteraï¿½ï¿½es posteriores procura conexï¿½es, excluindo a paragem anterior
 			else if (iterations > 0 && iterations< 10)
 			{
 				int sizePaths = paths.size();
@@ -543,7 +446,7 @@ void teste(const std::vector<Line> &lines)
 				}
 				paths = cleanPaths(paths, count);
 			}
-			//Está a parar na 10+ iteração mas pode ser otimizado
+			//Estï¿½ a parar na 10+ iteraï¿½ï¿½o mas pode ser otimizado
 			else if (iterations > 10) continueSearch = false;
 
 
@@ -555,10 +458,10 @@ void teste(const std::vector<Line> &lines)
 	//parte final
 	if (!completedPaths.empty())
 	{
-		//de todos os caminhos completos refina de modo a selecionar até os três melhores 
+		//de todos os caminhos completos refina de modo a selecionar atï¿½ os trï¿½s melhores 
 		vector < vector <connectionInfo>> refinedPaths = bestPaths(completedPaths);
 
-		//adiciona a primeira paragem, falta mudar para pôr a paragem inicial, e também contabilizar e aconselhar sobre atrasos de mudanças de linha
+		//adiciona a primeira paragem, falta mudar para pï¿½r a paragem inicial, e tambï¿½m contabilizar e aconselhar sobre atrasos de mudanï¿½as de linha
 		connectionInfo originStop;
 		originStop.line = 0;
 		originStop.stop = firstStop;
@@ -574,6 +477,5 @@ void teste(const std::vector<Line> &lines)
 
 
 	}
-	else cout << "O algoritmo não encontrou solucao" << endl;
+	else cout << "O algoritmo nï¿½o encontrou solucao" << endl;
 }
-

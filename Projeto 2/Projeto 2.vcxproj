@@ -161,6 +161,7 @@
     <ClCompile Include="Shift.cpp" />
     <ClCompile Include="templateFunc.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="timeBetweenStops.cpp" />
     <ClCompile Include="visualizeAuxFunc.cpp" />
     <ClCompile Include="visualizeInfo.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />

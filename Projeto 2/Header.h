@@ -71,6 +71,8 @@ void driversManager(std::string fileName, std::vector<Driver> &drivers);
 
 void visualizeInfo(const std::vector<Line> &lines);
 
+void timeBetweenStops(const std::vector<Line> &lines);
+
 //Tratamento input utilizador
 //**************************************************
 

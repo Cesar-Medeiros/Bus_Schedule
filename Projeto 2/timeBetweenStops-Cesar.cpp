@@ -40,8 +40,8 @@ std::vector<stopInfo> searchStops(const std::vector<Line> &lines, std::string bu
 	return returnValue;
 }
 
-std::vector<pair<uint, uint>> commonElements(const std::vector<Line> &lines, unsigned int firstLineIndex, unsigned int lastLineIndex) {
-	std::vector<pair<uint, uint>> commonElements;
+std::vector<std::pair<uint, uint>> commonElements(const std::vector<Line> &lines, unsigned int firstLineIndex, unsigned int lastLineIndex) {
+	std::vector<std::pair<uint, uint>> commonElements;
 
 	for (unsigned int i = 0; i < lines.at(firstLineIndex).getBusStops().size(); i++) {
 		std::string stopName = lines.at(firstLineIndex).getBusStop(i);
@@ -49,7 +49,7 @@ std::vector<pair<uint, uint>> commonElements(const std::vector<Line> &lines, uns
 		for (unsigned int j = 0; j < lines.at(lastLineIndex).getBusStops().size(); j++) {
 
 			if (stopName == lines.at(lastLineIndex).getBusStop(j))
-				commonElements.push_back(pair<uint, uint>(i, j));
+				commonElements.push_back(std::pair<uint, uint>(i, j));
 		}
 	}
 
@@ -111,7 +111,7 @@ void timeBetweenStops(const std::vector<Line> &lines) {
 	for (uint i = 0; i < firstStopList.size(); i++) {
 		for (uint j = 0; j < lastStopList.size(); j++) {
 
-			std::vector<pair<uint, uint>> commonBusStops = commonElements(lines, firstStopList.at(i).posLine, lastStopList.at(j).posLine);
+			std::vector<std::pair<uint, uint>> commonBusStops = commonElements(lines, firstStopList.at(i).posLine, lastStopList.at(j).posLine);
 
 			for (uint k = 0; k < commonBusStops.size(); k++) {
 
@@ -133,7 +133,7 @@ void timeBetweenStops(const std::vector<Line> &lines) {
 
 	else{
 		colorCout('*');
-		std:cout << "O tempo entre a paragem " << busStopName1 << " e " << busStopName2 << " e' de " <<  time << " minutos. "<< std::endl;
+		std::cout << "O tempo entre a paragem " << busStopName1 << " e " << busStopName2 << " e' de " << time/60 << " horas e " << time%60 << " minutos " << std::endl;
 	}
 }
 

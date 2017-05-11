@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Visualize">
       <UniqueIdentifier>{9498bb75-aa2f-4676-a38d-c2cf346ff9bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Bus">
+      <UniqueIdentifier>{8556e845-2b87-4e7c-831d-87e9dcebc717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scaling">
+      <UniqueIdentifier>{d42f192e-8590-4109-ad22-2278ebb2d239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,9 +87,6 @@
     <ClCompile Include="linesElements.cpp">
       <Filter>Source Files\Lines</Filter>
     </ClCompile>
-    <ClCompile Include="templateFunc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="driversManager.cpp">
       <Filter>Source Files\Drivers</Filter>
     </ClCompile>
@@ -108,8 +111,20 @@
     <ClCompile Include="visualizeAuxFunc.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
-    <ClCompile Include="timeBetweenStops.cpp">
+    <ClCompile Include="scaling.cpp">
+      <Filter>Source Files\Scaling</Filter>
+    </ClCompile>
+    <ClCompile Include="busFunc.cpp">
+      <Filter>Source Files\Bus</Filter>
+    </ClCompile>
+    <ClCompile Include="timeBetweenStops-Cesar.cpp">
       <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
+    <ClCompile Include="timeBetweenStops-Duarte.cpp">
+      <Filter>Source Files\Visualize</Filter>
+    </ClCompile>
+    <ClCompile Include="templateFunctions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +132,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Company.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
@@ -132,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

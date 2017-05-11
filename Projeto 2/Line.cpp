@@ -1,11 +1,19 @@
 #include "Line.h"
 
 
-Line::Line(string textLIne){
+Line::Line(std::string textLIne){
 
   // INITIALISATION CODE GOES IN HERE
   
 
+}
+
+Line::Line(unsigned int id, unsigned int freq, std::vector<std::string> busStopList, std::vector<int> timesList) {
+	
+	this->id = id;
+	this->freq = freq;
+	this->busStopList = busStopList;
+	this->timesList = timesList;
 }
 
 ////////////////
@@ -20,11 +28,11 @@ unsigned int Line::getFreq() const {
 	return freq;
 }
 
-vector<string> Line::getBusStops() const{
+std::vector<std::string> Line::getBusStops() const{
   return busStopList;
 }
 
-vector<int> Line::getTimings() const{
+std::vector<int> Line::getTimings() const{
   return timesList;
 }
 
@@ -46,15 +54,15 @@ void Line::setFreq(unsigned int freq) {
 	this->freq = freq;
 }
 
-void Line::setBusStops(vector<string> busStopList) {
+void Line::setBusStops(std::vector<std::string> busStopList) {
 	this->busStopList = busStopList;
 }
 
-void Line::setTimings(vector<int> timesList) {
+void Line::setTimings(std::vector<int> timesList) {
 	this->timesList = timesList;
 }
 
-void Line::setBusStops(string busStop, unsigned int index) {
+void Line::setBusStops(std::string busStop, unsigned int index) {
 	busStopList.at(index) = busStop;
 }
 

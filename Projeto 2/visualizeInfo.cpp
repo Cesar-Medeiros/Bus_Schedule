@@ -1,17 +1,18 @@
 #include "Header.h"
 #include "string"
 
-void timeBetween2Stops(const std::vector<Line> &lines);
+void teste(const std::vector<Line> &lines);
 
 void printSchedule(const std::vector<Line> &line, int posLine);
 void printStopSchedule(const std::vector<Line> &lines);
 void showLine(const std::vector<Line> &line);
 void searchBusStop(const std::vector<Line> &line);
 void printCentered(std::ostream& out, const std::string info, const unsigned int sizew);
+void driverVisualize(const Driver &driver);
 
 
 
-void visualizeInfo(const std::vector<Line> &lines) {
+void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers) {
 
 
 
@@ -25,6 +26,7 @@ void visualizeInfo(const std::vector<Line> &lines) {
 		std::cout << " |     (3)  Tempo entre duas paragens     |\n";
 		std::cout << " |     (4)  Visualizar uma linha          |\n";
 		std::cout << " |     (5)  Linhas com uma paragem        |\n";
+		std::cout << " |     (6)  Informacao de um condutor     |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 
 		bool validNumber;
@@ -59,7 +61,7 @@ void visualizeInfo(const std::vector<Line> &lines) {
 				break;
 
 			case 3:
-				timeBetweenStops(lines);
+				teste(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
 				break;
@@ -76,6 +78,13 @@ void visualizeInfo(const std::vector<Line> &lines) {
 				getchar();
 				break;
 
+			case 6: {
+
+				int posDriver = ask_TestID(drivers);
+				if (posDriver != -1)
+					driverVisualize(drivers.at(posDriver));
+				break;
+			}
 
 			default: validNumber = false;
 			}

@@ -3,10 +3,10 @@
 //Acabar com espacos
 //Acabar com new line
 
-void readLines(vector<Line> &lines, string fileName) {
+void readLines(std::vector<Line> &lines, std::string fileName) {
 
-	fstream linesFile;
-	linesFile.open(fileName, ios::in);
+	std::fstream linesFile;
+	linesFile.open(fileName, std::ios::in);
 
 	linesFile.peek(); //Para posteriormente testar se e o ficheiro esta vazio
 
@@ -18,8 +18,8 @@ void readLines(vector<Line> &lines, string fileName) {
 		linesFile >> id >> comma >> freq >> comma;
 
 
-		string busStopText;    
-		string timeText;
+		std::string busStopText;
+		std::string timeText;
 		
 		//Paragens de uma determinada linha
 
@@ -40,12 +40,12 @@ void readLines(vector<Line> &lines, string fileName) {
 
 
 //Ciclo para o nome das Paragens
-		vector <string> busStops;
+		std::vector <std::string> busStops;
 
 		do {
 			commaPos = busStopText.find_first_of(',');
-			int poss = std::string::npos;
-			string stopTemp = busStopText.substr(0, busStopText.find_first_of(','));
+			unsigned int poss = std::string::npos;
+			std::string stopTemp = busStopText.substr(0, busStopText.find_first_of(','));
 
 			stopTemp = stopTemp.substr(stopTemp.find_first_not_of(' '), stopTemp.find_last_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") + 1);
 
@@ -60,23 +60,19 @@ void readLines(vector<Line> &lines, string fileName) {
 
 
 //Ciclo para o tempo entre paragens
-		vector<int> times;
+		std::vector<int> times;
 
 
 		do{
 			commaPos = timeText.find_first_of(',');
-			string timeBetween = timeText.substr(0, timeText.find_first_of(','));
+			std::string timeBetween = timeText.substr(0, timeText.find_first_of(','));
 			timeText = timeText.substr(commaPos + 2);
 			times.push_back(stoi(timeBetween));
 		} while (commaPos != 4294967295);
 
 
 //Gravar tudo no vetor lines
-		Line line;
-		line.setId(id);
-		line.setFreq(freq);
-		line.setBusStops(busStops);
-		line.setTimings(times);
+		Line line(id,freq, busStops, times);
 		lines.push_back(line);
 	}
 

@@ -1,4 +1,5 @@
 #include "Header.h"
+#include <typeinfo>
 
 #ifndef TEMPLATE
 #define TEMPLATE
@@ -21,7 +22,7 @@ template <class T> void readID(T &classVar, const std::vector<T> &vec) {
 	do {
 		foundID = false;
 
-		
+
 		readNum("Introduza o ID: ", id);
 
 		for (uint i = 0; i < vec.size(); i++) {
@@ -39,6 +40,7 @@ template <class T> void readID(T &classVar, const std::vector<T> &vec) {
 }
 
 
+
 /**
 Pergunta o id de uma linha ou condutor ao utilizado e verifica se e' valido. Se nao for valido volta a perguntar.
 
@@ -51,15 +53,31 @@ template <class T> int ask_TestID(const std::vector<T> &vect) {
 	uint id;
 	bool validID;
 
+	std::string text;
+
 	do {
 		pos = -1;
 
-		readNum("Introduza um ID: ", id);
+		if (typeid(T) == typeid(Line))
+			text = "Introduza o ID de uma Linha: ";
+
+		else if (typeid(T) == typeid(Driver))
+			text = "Introduza o ID de um Condutor: ";
+
+		else if (typeid(T) == typeid(Bus))
+			text = "Introduza o ID de um Autocarro: ";
 
 
-		for (uint i = 0; i<vect.size(); i++) {
+
+		readNum(text.c_str(), id);
+
+
+		for (uint i = 0; i < vect.size(); i++) {
+
 			if (id == vect.at(i).getId())
 				pos = i;
+
+
 		}
 
 		if (pos == -1)
@@ -102,7 +120,7 @@ template <class T> int ask_TestID(const std::vector<T> &vect) {
 Insere uma linha ou condutor(estruturaTemp) por ordem do ID num vetor estrutura
 @param estruturaTemp estrutura 1o - Struct onde se encontrar o id, 2o - Vetor onde se vai inserir a estruturaTemp.
 */
-template <class T> void sortID(T &classVar, std::vector<T> &vect) {
+template <class T> unsigned int sortID(T &classVar, std::vector<T> &vect) {
 
 	uint i = 0;
 	bool insertID = false;
@@ -117,6 +135,8 @@ template <class T> void sortID(T &classVar, std::vector<T> &vect) {
 
 	if (!insertID)
 		vect.push_back(classVar);
+
+	return i;
 }
 
 
@@ -135,32 +155,6 @@ template <class T> void sortID(std::vector<T> &vect) {
 		}
 
 	} while (!inOrder);
-}
-
-
-//Nao esta a ser usada nesta versao do projeto
-template <class T> int gestaoNotepad(const std::string &nomeFicheiro, std::vector<T> &estrutura) {
-
-	int opcao;
-
-	std::cout << "\n\nDeseja \"operacao\" o ficheiro: \n";
-	std::cout << "1 - No notepad\n";
-	std::cout << "2 - Pela consola\n\n";
-
-	do {
-		int opcao = lerOpcao();
-	} while ((opcao != 1) && (opcao != 2));
-
-	if (opcao == 1) {
-		openNotepad(nomeFicheiro);
-		estrutura.clear();
-		/*if (typeid(T).name() == "linhaStruct") {
-
-		lerFicheiroLinhas(estrutura, nomeFicheiro);
-		}
-		else readDrivers(estrutura, nomeFicheiro);*/
-	}
-	return opcao;
 }
 
 #endif

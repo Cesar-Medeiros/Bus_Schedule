@@ -22,7 +22,7 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 		{	
 			std::cout << std::endl;
 			for (unsigned int i = 0; i < lines.at(posLine).getBusStops().size(); i++)
-				cout << "Stop " << i + 1 << ": " << lines.at(posLine).getBusStop(i) << endl;
+				std::cout << "Stop " << i + 1 << ": " << lines.at(posLine).getBusStop(i) << std::endl;
 			std::cout << std::endl;
 
 
@@ -72,7 +72,7 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 		{
 			std::cout << std::endl;
 			for (unsigned int i = 0; i < lines.at(posLine).getTimings().size(); i++)
-				cout << "Time " << i + 1 << ": " << lines.at(posLine).getTiming(i) << endl;
+				std::cout << "Time " << i + 1 << ": " << lines.at(posLine).getTiming(i) << std::endl;
 			std::cout << std::endl;
 
 			unsigned int timeIndex;
@@ -92,7 +92,7 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 		
 		case 3:
 			colorCout('?');
-			cout << "Insert new Bus Stops: " << endl << endl;
+			std::cout << "Insert new Bus Stops: " << std::endl << std::endl;
 			
 			std::string busStop;
 			std::vector <std::string> busStopList;

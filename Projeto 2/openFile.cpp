@@ -1,11 +1,11 @@
 #include "Header.h"
 
-int openFile(string linesFileName, string DriversFileName) {
+int openFile(std::string linesFileName, std::string DriversFileName) {
 
 	char createNewFile = 'N';
 
-	fstream linesFile(linesFileName);
-	fstream driversFile(DriversFileName);
+	std::fstream linesFile(linesFileName);
+	std::fstream driversFile(DriversFileName);
 
 	bool linesFileFail = false;
 	bool driversFileFail = false;
@@ -13,14 +13,14 @@ int openFile(string linesFileName, string DriversFileName) {
 
 	if (!linesFile.is_open()) {
 		colorCout('!');
-		cout << "O ficheiro " << linesFileName << " nao existe." << endl;
+		std::cout << "O ficheiro " << linesFileName << " nao existe." << std::endl;
 		linesFileFail = true;
 
 	}
 
 	if (!driversFile.is_open()) {
 		colorCout('!');
-		cout << "O ficheiro " << DriversFileName << " nao existe." << endl;
+		std::cout << "O ficheiro " << DriversFileName << " nao existe." << std::endl;
 		driversFileFail = true;
 	}
 
@@ -29,19 +29,19 @@ int openFile(string linesFileName, string DriversFileName) {
 			colorCout('?');
 
 			if (linesFileFail && driversFileFail)
-				cout << "Deseja criar os ficheiros " << linesFileName << " e " << DriversFileName << " (S ou N)? ";
+				std::cout << "Deseja criar os ficheiros " << linesFileName << " e " << DriversFileName << " (S ou N)? ";
 
 			else if (linesFileFail)
-				cout << "Deseja criar o ficheiro " << linesFileName << " (S ou N)? ";
+				std::cout << "Deseja criar o ficheiro " << linesFileName << " (S ou N)? ";
 
 			else if (driversFileFail)
-				cout << "Deseja criar o ficheiro " << DriversFileName << " (S ou N)? ";
+				std::cout << "Deseja criar o ficheiro " << DriversFileName << " (S ou N)? ";
 
 
-			cin >> createNewFile;
+			std::cin >> createNewFile;
 
 			char conteudoBuffer;
-			cin.get(conteudoBuffer);
+			std::cin.get(conteudoBuffer);
 
 			if (conteudoBuffer != '\n')
 				createNewFile = 0;
@@ -54,12 +54,12 @@ int openFile(string linesFileName, string DriversFileName) {
 		if (createNewFile == 'S')
 		{
 			if (linesFileFail) {
-				ofstream linha_file(linesFileName);
+				std::ofstream linha_file(linesFileName);
 				linha_file.close();
 			}
 
 			if (driversFileFail) {
-				ofstream condutor_file(DriversFileName);
+				std::ofstream condutor_file(DriversFileName);
 				condutor_file.close();
 			}
 

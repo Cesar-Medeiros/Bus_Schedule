@@ -1,7 +1,7 @@
 #include "Header.h"
 
 
-void addDriver(const std::string &fileName, std::vector<Driver> &drivers) {
+unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 	
 	Driver driver;
 	std::string name;
@@ -47,12 +47,14 @@ void addDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 	//Defenir a ordem onde vai ser colocado o condutor
 	
-	sortID(driver, drivers);
+	unsigned int index = sortID(driver, drivers);
 
 
 	std::cout << std::endl;
 	colorCout('*');
 	std::cout << "Condutor adicionado com sucesso ao ficheiro " << fileName << std::endl;
+
+	return index;
 }
 
 void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {

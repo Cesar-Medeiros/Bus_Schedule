@@ -15,9 +15,10 @@ void welcomeScreen();
 
 int main() {
 
-	std::string linesFile, driversFile;
+	std::string linesFile, driversFile, busFile;
 	std::vector<Line> line; //Vetor que contem todas as linhas existentes
 	std::vector<Driver> driver;//Vetor que contem todos os condutores existente
+	std::vector<Bus> bus;
 
 	welcomeScreen();
 
@@ -35,6 +36,7 @@ int main() {
 
 	linesFile = "linhas.txt";
 	driversFile = "condutores.txt";
+	busFile = "bus.txt";
 
 
 
@@ -52,10 +54,11 @@ int main() {
 	//Le os ficheiros para os respetivos vetores
 	readLines(line, linesFile);
 	readDrivers(driver, driversFile);
+	readBus(driver, bus, busFile);
 
 
 
-	menu(line, driver, linesFile, driversFile);
+	menu(line, driver, bus, linesFile, driversFile);
 
 
 

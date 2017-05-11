@@ -2,11 +2,14 @@
 
 #include <iostream>
 #include <vector>
+#include "Driver.h"
 
 
-using namespace std;
 
 class Shift{
+
+	friend class Driver;
+	friend class Bus;
  private:
   unsigned int busLineId;
   unsigned int driverId;  
@@ -14,7 +17,9 @@ class Shift{
   unsigned int startTime; 
   unsigned int endTime;   
 
+
  public:
+  Shift() {};
   Shift(unsigned int busLineId, unsigned int driverId, unsigned int busNumber, unsigned int startTime, unsigned int endTime);
   // get methdos
   unsigned int getBusLineId() const;
@@ -31,4 +36,5 @@ class Shift{
   void setEndTime(unsigned int);
 
   // other methods
+
 };

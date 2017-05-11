@@ -1,14 +1,14 @@
 #include "Company.h"
 
 
-Empresa::Empresa(string nome, string fichCondutores, string fichLinhas){
+Empresa::Empresa(std::string nome, std::string fichCondutores, std::string fichLinhas){
   
 }
 
 ////////////////////////////////
 // metodos get
 ///////////////////////////////
-string Empresa::getNome() const{
+std::string Empresa::getNome() const{
   return nome;
 }
 

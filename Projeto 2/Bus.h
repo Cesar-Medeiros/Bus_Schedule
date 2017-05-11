@@ -2,29 +2,37 @@
 
 #include <iostream>
 #include <vector>
-
+#include <map>
 #include "Shift.h"
 
 
-using namespace std;
 
 class Bus{
  private:
   unsigned int orderInLine;
   unsigned int driverId;
   unsigned int lineId;
-  vector<Shift> schedule;
+  std::vector<Shift> schedule;
+
  public:
-  Bus(unsigned int id, unsigned int driver, unsigned int line);
+	 Bus() {  };
+  Bus(unsigned int id, unsigned int driver, unsigned int line, std::vector<Shift> schedule = std::vector<Shift>());
+
   // get methods
+  unsigned int getId() const; //Same as getBusOrderInLine(); //Used for template function
   unsigned int getBusOrderInLine() const;
   unsigned int getDriverId() const;
   unsigned int getLineId() const;
-  vector<Shift> getSchedule() const;
+  std::vector<Shift> getSchedule() const;
+
   // set methods
     unsigned int setDriverId() const;
     unsigned int setLineId() const;
+
+
   // other methods
+
+	int insertShift(Shift shift);
 
 };
 

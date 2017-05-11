@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void addDriver(const std::string &fileName, std::vector<Driver> &drivers);
+unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers);
 void changeDriver(const std::string &fileName, std::vector<Driver> &drivers);
 void removeDriver(const std::string &fileName, std::vector<Driver> &drivers);
 

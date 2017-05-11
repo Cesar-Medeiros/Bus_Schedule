@@ -9,17 +9,17 @@ int readOption() {
 
 	int option;
 	colorCout('?');
-	cout << "Escolha uma opcao: ";
-	cin >> option;
+	std::cout << "Escolha uma opcao: ";
+	std::cin >> option;
 
 	char bufferContent;
-	cin.get(bufferContent);
+	std::cin.get(bufferContent);
 
-	if (cin.fail() || bufferContent != '\n') {
-		cin.clear();
-		cin.ignore(10000, '\n');
+	if (std::cin.fail() || bufferContent != '\n') {
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
 		colorCout('!');
-		cout << "Input invalido\n\n";
+		std::cout << "Input invalido\n\n";
 		option = -1; //Ter a certeza que o lixo de memoria que ficou na opcao nao seja nenhuma das opcoes
 	}
 
@@ -43,19 +43,19 @@ void readNum(const char coutText[], uint &num, bool displaySymbol) {
 		if (displaySymbol)
 			colorCout('?');
 
-		cout << coutText;
-		cin >> num;
-		cin.get(bufferContent);
+		std::cout << coutText;
+		std::cin >> num;
+		std::cin.get(bufferContent);
 
-		if ((cin.fail() || bufferContent != '\n')) {
-			cin.clear();
-			cin.ignore(10000, '\n');
+		if ((std::cin.fail() || bufferContent != '\n')) {
+			std::cin.clear();
+			std::cin.ignore(10000, '\n');
 			colorCout('!');
-			cout << "Invalid Input\n\n";
+			std::cout << "Invalid Input\n\n";
 
 		}
 
-	} while (cin.fail() || bufferContent != '\n');
+	} while (std::cin.fail() || bufferContent != '\n');
 }
 
 void colorCout(char symbol) {
@@ -71,7 +71,7 @@ void colorCout(char symbol) {
 
 	if (validSymbol) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colorNum);
-		cout << "[" << symbol << "] ";
+		std::cout << "[" << symbol << "] ";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	}
 }

@@ -33,14 +33,14 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 	if (posLine == -1) return;
 
 
-	cout << "\n\nIdentifier: " << lines.at(posLine).getId() << endl;
-	cout << "Frequency: " << lines.at(posLine).getFreq() << endl;
+	std::cout << "\n\nIdentifier: " << lines.at(posLine).getId() << std::endl;
+	std::cout << "Frequency: " << lines.at(posLine).getFreq() << std::endl;
 
 	for (int i = 0; i < lines.at(posLine).getBusStops().size(); i++)
-		cout << "Stop " << i << ": " << lines.at(posLine).getBusStop(i) << endl;
+		std::cout << "Stop " << i << ": " << lines.at(posLine).getBusStop(i) << std::endl;
 
 	for (int i = 0; i < lines.at(posLine).getTimings().size(); i++)
-		cout << "Duration " << i << ": " << lines.at(posLine).getTiming(i) << endl;
+		std::cout << "Duration " << i << ": " << lines.at(posLine).getTiming(i) << std::endl;
 
 
 

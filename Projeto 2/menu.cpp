@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, const std::string &linesFile, const std::string &driversFile) {
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile) {
 
 
 
@@ -16,6 +16,7 @@ void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, const std::str
 		std::cout << " |     (3)  Visualizacao de informacao    |\n";
 		std::cout << " |     (4)  Abrir ficheiro linhas         |\n";
 		std::cout << " |     (5)  Abrir ficheiro condutores     |\n";
+		std::cout << " |     (6)  Escalonamento iterativo       |\n";
 		std::cout << " |     (0)  Sair                          |\n\n";
 		//=================================================================================================================
 
@@ -32,9 +33,10 @@ void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, const std::str
 			switch (option) {
 			case 1: linesManager(linesFile, lines); break;
 			case 2: driversManager(driversFile, drivers); break;
-			case 3: visualizeInfo(lines); break;
+			case 3: visualizeInfo(lines, drivers); break;
 			case 4: openNotepad(lines, linesFile);break;
 			case 5: openNotepad(drivers, driversFile);break;
+			case 6: createShift(driversFile, drivers, bus); break;
 			case 0: return; //Unica maneira de sair
 			default: validNumber = false;
 			}

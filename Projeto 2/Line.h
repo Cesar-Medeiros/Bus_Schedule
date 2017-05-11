@@ -6,37 +6,37 @@
 
 
 
-using namespace std;
 
 class Line {
 private:
 
 	unsigned int id;
 	unsigned int freq;
-	vector<string> busStopList;
-	vector<int> timesList;
+	std::vector<std::string> busStopList;
+	std::vector<int> timesList;
 
 public:
 	Line() {};
-	Line(string textLine);
+	Line(unsigned int id, unsigned int freq, std::vector< std::string> busStopList, std::vector<int> timesList);
+	Line(std::string textLine);
 
 	// metodos get
 	
 	unsigned int getId() const;
 	unsigned int getFreq() const;
-	vector<string> getBusStops() const;
+	std::vector<std::string> getBusStops() const;
 	std::string getBusStop(unsigned int index) const;
 	unsigned int getTiming(unsigned int index) const;
-	vector<int> getTimings() const;
+	std::vector<int> getTimings() const;
 
 	// set methods
 
 	void setId(unsigned int ID);
 	void setFreq(unsigned int ID);
-	void setBusStops(vector<string> busStops);
-	void setTimings(vector<int> timings);
+	void setBusStops(std::vector< std::string> busStops);
+	void setTimings(std::vector<int> timings);
 
-	void setBusStops(string busStop, unsigned int index);
+	void setBusStops(std::string busStop, unsigned int index);
 	void setTimings(int time, unsigned int index);
 
 	// other methods

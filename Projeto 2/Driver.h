@@ -3,46 +3,42 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <set>
 #include "Shift.h"
+class Shift;
+class Driver {
+private:
 
+	unsigned int id;
+	std::string name;
+	unsigned int maxHours;        // maximum duration of a shift
+	unsigned int maxWeekWorkingTime;  // maximum number of hours of work in a week
+	unsigned int minRestTime;     // minimum number of rest hours between shifts
+	std::vector<Shift> shifts;         // assigned shifts
 
-using namespace std;
+public:
+	Driver(unsigned int id, std::string name, unsigned int maxHours, unsigned int maxWeekWorkingTime, unsigned int minRestTime, std::vector<Shift> shifts);
+	Driver() {
+	};
 
-class Driver{
+	// get methods
+	unsigned int getId() const;
+	std::string getName() const;
+	unsigned int getShiftMaxDuration() const;
+	unsigned int getMaxHours() const;
+	unsigned int getMaxWeekWorkingTime() const;
+	unsigned int getMinRestTime() const;
+	std::vector<Shift> getShifts() const;
 
- private:
+	// set methods
 
-  unsigned int id;
-  string name;
-  unsigned int maxHours;        // maximum duration of a shift
-  unsigned int maxWeekWorkingTime;  // maximum number of hours of work in a week
-  unsigned int minRestTime;     // minimum number of rest hours between shifts
-  vector<Shift> shifts;         // assigned shifts
-
- public:
-  Driver(string textLine);
-  Driver() {};
-
-  // get methods
-  unsigned int getId() const;
-  string getName() const;
-  unsigned int getShiftMaxDuration() const;
-  unsigned int getMaxHours() const;
-  unsigned int getMaxWeekWorkingTime() const;
-  unsigned int getMinRestTime() const;
-  vector<Shift> getShifts() const;
-
-
-  // set methods
-
-  void setId(unsigned int id);
-  void setName(string name);
-  void setMaxHours(unsigned int maxHours);
-  void setMaxWeekWorkingTime(unsigned int maxWeekWorkingTime);
-  void setMinRestTime(unsigned int minRestTime);
-
-
-  // outher methods
+	void setId(unsigned int id);
+	void setName(std::string name);
+	void setMaxHours(unsigned int maxHours);
+	void setMaxWeekWorkingTime(unsigned int maxWeekWorkingTime);
+	void setMinRestTime(unsigned int minRestTime);
+	void setShifts(std::vector<Shift> shifts);
+	
+	int insertShift(Shift shift);
 
 };

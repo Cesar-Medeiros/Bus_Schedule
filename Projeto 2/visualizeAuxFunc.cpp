@@ -69,3 +69,52 @@ void printCentered(std::ostream& out, const std::string info, const unsigned int
 	else out << info;
 }
 
+
+void imprimirHoras(uint time) {
+	uint weekDay = time / (24 * 60);
+	uint hour = (time % (24 * 60)) / 60;
+	uint min = (time % (24 * 60)) % 60;
+	std::string text;
+	switch (weekDay) {
+	case 0: text = "Seg"; break;
+	case 1: text = "Ter"; break;
+	case 2: text = "Qua"; break;
+	case 3: text = "Qui"; break;
+	case 4: text = "Sex"; break;
+	case 5: text = "Sab"; break;
+	case 6: text = "Dom"; break;
+	}
+	std::cout << text << ", ";
+	std::cout << Time(hour, min, 5) << std::endl;
+
+}
+
+
+void driverVisualize(const Driver &driver)
+{
+
+
+	std::cout << "Id: " << driver.getId() << std::endl;
+	std::cout << "Name: " << driver.getName() << std::endl;
+	std::cout << "Duração maxima de um turno: " << driver.getMaxHours() << std::endl;
+	std::cout << "Tempo minimo de descanso entre turnos: " << driver.getMinRestTime() << std::endl;
+	std::cout << "Tempo restante por semana: " << driver.getMaxWeekWorkingTime() << std::endl; //Criar novo atributo
+	std::cout << std::endl;
+
+	std::cout << "Turnos existentes: " << std::endl;
+
+
+	for (uint i = 0; i < driver.getShifts().size(); i++) {
+		uint startTime = driver.getShifts().at(i).getStartTime();
+		uint endTime = driver.getShifts().at(i).getEndTime();
+
+		std::cout << "Inicio do turno: ";
+		imprimirHoras(startTime);
+
+		std::cout << "Fim do turno: ";
+		imprimirHoras(endTime);
+		std::cout << std::endl;
+	}
+
+
+}

@@ -4,7 +4,7 @@
 void insertBusStops(Line &line) {
 
 	std::string busStop;
-	std::vector<string> busStopList;
+	std::vector<std::string> busStopList;
 
 	std::cout << std::endl;
 	colorCout('?');

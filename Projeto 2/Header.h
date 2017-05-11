@@ -34,7 +34,17 @@ typedef unsigned int uint;
 
 //Prototipos funcoes
 //*********************************************************************************************************
+struct connectionInfo
+{
+	uint line;
+	uint time;
+	std::string stop;
+};
 
+
+std::vector<connectionInfo> stopsWithConnection(std::string stop, std::string lastStop, const std::vector<Line> &lines);
+void printConnection(connectionInfo connection);
+void teste(const std::vector<Line> &lines);
 
 
 //Funcoes opcao - Menu principal

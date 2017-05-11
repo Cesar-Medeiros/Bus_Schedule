@@ -27,46 +27,17 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fil
 		uint startTime, endTime;
 		bool endOfLine = false;
 
-		while (!endOfLine) {
-			busFile >> separationChar >> startTime >> separationChar >> endTime >> separationChar;
-			Shift shift = Shift(lineId, driverId, orderInLine, startTime, endTime);
-
-
-			if (startTime > 10079 || endTime > 10079 || startTime > endTime) {}
-
-			else if (shifts.empty())
-				shifts.push_back(shift);
-
-			else if (endTime < shifts.at(0).getStartTime())
-				shifts.insert(shifts.begin(), shift);
-
-			else {
-
-				for (size_t i = 0; i < shifts.size() - 1; i++) {
-					if (shift.getEndTime() < shifts.at(i + 1).getStartTime()) {
-						shifts.insert(shifts.begin() + i, shift);
-						break;
-					}
-				}
-
-
-				
-			}
-			char character = busFile.get();
-			if (character == '\n')
-				endOfLine = true;
-		}
-
 		bool found;
+		size_t indexDriver;
+		for (indexDriver = 0; indexDriver < drivers.size(); indexDriver++) {
 
-		for (size_t i = 0; i < drivers.size(); i++) {
-
-			if (drivers.at(i).getId() == driverId) {
+			if (drivers.at(indexDriver).getId() == driverId) {
 				found = true;
-				drivers.at(i).setShifts(shifts);
+				break;
+
 			}
 		}
-		
+
 
 		if (!found) {
 			char answer;
@@ -79,27 +50,27 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fil
 			if (answer == 'N')
 				break;
 		}
-			/*std::cout << "Insira o nome do condutor: ";
-			std::string driverName;
-			getline(std::cin, driverName);
-			Driver(driverId,driverName, )
-			*/
+		/*std::cout << "Insira o nome do condutor: ";
+		std::string driverName;
+		getline(std::cin, driverName);
+		Driver(driverId,driverName, )
+		*/
 
 
-			Bus busTemp = Bus(orderInLine, driverId, lineId, shifts);
+		Bus busTemp = Bus(orderInLine, driverId, lineId);
 
-			if (bus.empty())
-				bus.push_back(busTemp);
+		while (!endOfLine) {
+			busFile >> separationChar >> startTime >> separationChar >> endTime >> separationChar;
+			Shift shift = Shift(lineId, driverId, orderInLine, startTime, endTime);
 
-			else {
+			busTemp.insertShift(shift);
+			drivers.at(indexDriver).insertShift(shift);
 
-				for (size_t i = 0; i < bus.size() - 1; i++) {
-					if (busTemp.getBusOrderInLine() < bus.at(i + 1).getBusOrderInLine()) {
-						bus.insert(bus.begin() + i, busTemp);
-						break;
-					}
-				}
-			}
+
+			char character = busFile.get();
+			if (character == '\n')
+				endOfLine = true;
+		}
 
 		busFile.peek();
 	}
@@ -125,7 +96,7 @@ void writeBus(const std::vector<Bus> &bus, std::string fileName) {
 			busFile << "[" << bus.at(i).getSchedule().at(j).getStartTime() << " , " << bus.at(i).getSchedule().at(j).getEndTime() << "]";
 			
 			if (j + 1 != bus.at(i).getSchedule().size())
-				busFile << " ; ";
+				busFile << ",";
 		}
 		busFile << std::endl;
 	}

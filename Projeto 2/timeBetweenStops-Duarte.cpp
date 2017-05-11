@@ -1,12 +1,5 @@
 #include "Header.h"
 
-struct connectionInfo
-{
-	uint line;
-	uint time;
-	std::string stop;
-};
-
 
 //printConnection
 //Imprime ligacoes

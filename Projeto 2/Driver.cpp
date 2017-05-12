@@ -65,30 +65,6 @@ void Driver::setShifts(std::vector<Shift> shifts) {
 	this->shifts = shifts;
 }
 
-int Driver::insertShift(Shift shift) {
-	if (shift.startTime > 10079 || shift.endTime > 10079)
-		return 1;
-
-	if (shift.startTime > shift.endTime)
-		return 2;
-	
-	if (shifts.empty())
-		shifts.push_back(shift);
-	else if (shift.endTime < shifts.at(0).startTime)
-		shifts.insert(shifts.begin(), shift);
-	else {
-
-		for (size_t i = 0; i < shifts.size()-1; i++) {
-			if (shift.endTime < shifts.at(i+1).startTime) {
-				shifts.insert(shifts.begin() + i, shift);
-				return 0;
-			}
-		}
-
-		if (shift.startTime > shifts.at(shifts.size() - 1).endTime)
-			shifts.push_back(shift);
-		else
-		return 3;
-	}
-
+void Driver::insert(unsigned int index, Shift shift) {
+	shifts.insert(shifts.begin() + index, shift);
 }

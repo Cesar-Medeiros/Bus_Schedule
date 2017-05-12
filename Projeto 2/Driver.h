@@ -39,6 +39,6 @@ public:
 	void setMinRestTime(unsigned int minRestTime);
 	void setShifts(std::vector<Shift> shifts);
 	
-	int insertShift(Shift shift);
+	void insert(unsigned int index, Shift shift);
 
 };

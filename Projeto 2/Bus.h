@@ -32,7 +32,6 @@ class Bus{
 
   // other methods
 
-	int insertShift(Shift shift);
-
+	void Bus::insert(unsigned int index, Shift shift);
 };
 

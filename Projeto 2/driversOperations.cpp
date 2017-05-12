@@ -71,8 +71,8 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 	std::cout << "| (1) ID                         |\n";
 	std::cout << "| (2) Nome                       |\n";
 	std::cout << "| (3) Duracao do turno           |\n";
-	std::cout << "| (4) Tempo minimo de descanso   |\n";
 	std::cout << "| (4) Maximo de horas por semana |\n";
+	std::cout << "| (5) Tempo minimo de descanso   |\n";
 	std::cout << "| (0) Voltar Gerir condutor      |\n\n";
 
 	bool validNumber;

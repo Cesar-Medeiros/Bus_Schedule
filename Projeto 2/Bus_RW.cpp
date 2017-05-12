@@ -2,9 +2,11 @@
 #include "Header.h"
 #include <utility>
 
+int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
 unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers);
+void insertBusOrdered(std::vector<Bus> bus, Bus busTemp);
 
-void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fileName) {
+void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fileName) {
 
 	std::fstream busFile;
 	busFile.open(fileName, std::ios::in);
@@ -26,7 +28,7 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fil
 
 		uint startTime, endTime;
 		bool endOfLine = false;
-
+		
 		bool found;
 		size_t indexDriver;
 		for (indexDriver = 0; indexDriver < drivers.size(); indexDriver++) {
@@ -39,32 +41,18 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fil
 		}
 
 
-		if (!found) {
-			char answer;
-			colorCout('!');
-			std::cout << "Condutor com o Id = " << driverId << " nao foi encontrad.\n\n";
-			colorCout('?');
-			std::cout << "Deseja adicionar (S/N): "; //Melhor criar funcao auxiliar S/N
-			std::cin >> answer;
-			std::cin.ignore(1000, '\n');
-			if (answer == 'N')
-				break;
-		}
-		/*std::cout << "Insira o nome do condutor: ";
-		std::string driverName;
-		getline(std::cin, driverName);
-		Driver(driverId,driverName, )
-		*/
-
-
 		Bus busTemp = Bus(orderInLine, driverId, lineId);
 
 		while (!endOfLine) {
 			busFile >> separationChar >> startTime >> separationChar >> endTime >> separationChar;
-			Shift shift = Shift(lineId, driverId, orderInLine, startTime, endTime);
+			
+			Shift shift(lineId, driverId, orderInLine, startTime, endTime);
 
-			busTemp.insertShift(shift);
-			drivers.at(indexDriver).insertShift(shift);
+			uint indexInsert;
+			verifyShift(drivers.at(indexDriver), shift, indexInsert);
+
+			busTemp.insert(indexInsert, shift);
+			drivers.at(indexDriver).insert(indexInsert, shift);
 
 
 			char character = busFile.get();
@@ -72,7 +60,10 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus,std::string fil
 				endOfLine = true;
 		}
 
-		busFile.peek();
+		//Insere os autocarros por ordem do busOrderInLine
+		insertBusOrdered(bus, busTemp);
+
+		busFile.peek(); //Para ativar a flag de eof se acabar o ficheiro
 	}
 	
 
@@ -101,4 +92,28 @@ void writeBus(const std::vector<Bus> &bus, std::string fileName) {
 		busFile << std::endl;
 	}
 
+}
+
+
+void insertBusOrdered(std::vector<Bus> bus, Bus busTemp) {
+	if (bus.empty())
+		bus.push_back(busTemp);
+
+	else {
+		size_t busSize = bus.size();
+		for (size_t i = 0; i < busSize; i++) {
+
+			if (i + 1 == bus.size())
+				bus.push_back(busTemp);
+
+			else {
+
+				if (busTemp.getBusOrderInLine() < bus.at(i + 1).getBusOrderInLine()) {
+					bus.insert(bus.begin() + i, busTemp);
+					break;
+				}
+
+			}
+		}
+	}
 }

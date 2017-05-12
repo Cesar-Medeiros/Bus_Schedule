@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bus.cpp" />
-    <ClCompile Include="busFunc.cpp" />
+    <ClCompile Include="Bus_RW.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="driversOperations.cpp" />

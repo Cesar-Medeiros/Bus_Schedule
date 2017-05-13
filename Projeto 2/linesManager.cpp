@@ -16,7 +16,6 @@ void linesManager(std::string fileName, std::vector<Line> &lines) {
 		std::cout << " |     (1)  Criar nova linha              |\n";
 		std::cout << " |     (2)  Alterar linha                 |\n";
 		std::cout << " |     (3)  Remover linha                 |\n";
-		std::cout << " |     (4)  Função teste                  |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 
 		bool validNumber;
@@ -45,9 +44,6 @@ void linesManager(std::string fileName, std::vector<Line> &lines) {
 				removeLine(fileName, lines);
 				break;
 
-			case 4:
-				teste(lines);
-				break;
 
 			default:
 				validNumber = false;
@@ -59,8 +55,9 @@ void linesManager(std::string fileName, std::vector<Line> &lines) {
 		} while (!validNumber);
 
 
-
-		if (openFile(fileName) == 'S') {
+		char openFile;
+		ask_YN("Abrir o ficheiro (S ou N)? ", openFile);
+		if (toupper(openFile) == 'S') {
 			writeLines(lines, fileName);
 			openNotepad(fileName);
 		}

@@ -30,26 +30,3 @@ void openNotepad(std::string fileName) {
 	system(cstring);
 }
 
-char openFile(std::string fileName) {
-
-	char openFile;
-
-	do {
-		colorCout('?');
-		std::cout << "Abrir o ficheiro (S ou N)? ";
-		std::cin >> openFile;
-
-		char bufferContent; //Se o utilizador introduzir mais que um carater -> Input invalio
-		std::cin.get(bufferContent);
-
-		if (std::cin.fail() || bufferContent != '\n') {
-			std::cin.clear();
-			std::cin.ignore(1000, '\n'); //Se falhar ignora o resto dos carateres.
-			openFile = 0;
-		}
-
-
-	} while (toupper(openFile) != 'S' && toupper(openFile) != 'N');
-
-	return toupper(openFile);
-}

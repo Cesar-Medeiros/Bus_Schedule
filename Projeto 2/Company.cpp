@@ -1,15 +1,18 @@
 #include "Company.h"
 
 
-Empresa::Empresa(std::string nome, std::string fichCondutores, std::string fichLinhas){
-  
+Company::Company(std::string name, std::string fileDrivers, std::string fileLines, std::string fileBus){
+	this->name = name;
+	this->fileDrivers = fileBus;
+	this->fileLines = fileLines;
+	this->fileBus = fileBus;
 }
 
 ////////////////////////////////
 // metodos get
 ///////////////////////////////
-std::string Empresa::getNome() const{
-  return nome;
+std::string Company::getName() const{
+  return name;
 }
 
 //////////////////////////////
@@ -19,5 +22,5 @@ std::string Empresa::getNome() const{
 ////////////////////////////
 // outros metodos
 ///////////////////////////
-void Empresa::distribuiServico(){
+void Company::distribuiServico(){
 }

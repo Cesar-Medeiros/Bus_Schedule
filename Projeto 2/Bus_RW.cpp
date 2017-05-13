@@ -3,8 +3,7 @@
 #include <utility>
 
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
-unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers);
-void insertBusOrdered(std::vector<Bus> bus, Bus busTemp);
+void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp);
 
 void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fileName) {
 
@@ -95,7 +94,7 @@ void writeBus(const std::vector<Bus> &bus, std::string fileName) {
 }
 
 
-void insertBusOrdered(std::vector<Bus> bus, Bus busTemp) {
+void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp) {
 	if (bus.empty())
 		bus.push_back(busTemp);
 

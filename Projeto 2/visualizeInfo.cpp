@@ -1,8 +1,7 @@
 #include "Header.h"
 #include "string"
 
-void teste(const std::vector<Line> &lines);
-
+void timeBetween2Stops(const std::vector<Line> &lines);
 void printSchedule(const std::vector<Line> &line, int posLine);
 void printStopSchedule(const std::vector<Line> &lines);
 void showLine(const std::vector<Line> &line);
@@ -61,7 +60,7 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 				break;
 
 			case 3:
-				teste(lines);
+				timeBetween2Stops(lines);
 				std::cout << "\nClique em qualquer tecla para continuar";
 				getchar();
 				break;

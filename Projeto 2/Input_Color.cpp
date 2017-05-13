@@ -75,3 +75,21 @@ void colorCout(char symbol) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	}
 }
+
+void ask_YN(char text[], char &answer) {
+	do {
+		colorCout('?');
+		std::cout << text;
+		std::cin >> answer;
+
+		char bufferContent;
+		std::cin.get(bufferContent);
+		if (bufferContent != '\n') {
+			std::cin.ignore(1000, '\n');
+			answer = 0;
+			colorCout('!');
+			std::cout << "Invalid Input" << std::endl;
+		}
+
+	} while (toupper(answer) != 'N' && toupper(answer) != 'S');
+}

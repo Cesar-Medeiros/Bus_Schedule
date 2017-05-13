@@ -114,17 +114,14 @@
     <ClCompile Include="scaling.cpp">
       <Filter>Source Files\Scaling</Filter>
     </ClCompile>
-    <ClCompile Include="timeBetweenStops-Cesar.cpp">
-      <Filter>Source Files\Visualize</Filter>
-    </ClCompile>
-    <ClCompile Include="timeBetweenStops-Duarte.cpp">
-      <Filter>Source Files\Visualize</Filter>
-    </ClCompile>
     <ClCompile Include="templateFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bus_RW.cpp">
       <Filter>Source Files\Bus</Filter>
+    </ClCompile>
+    <ClCompile Include="timeBetweenStops.cpp">
+      <Filter>Source Files\Visualize</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

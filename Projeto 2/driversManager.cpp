@@ -44,8 +44,9 @@ void driversManager(std::string fileName, std::vector<Driver> &drivers) {
 
 		} while (!validNumber);
 
-
-		if (openFile(fileName) == 'S') {
+		char openFile;
+		ask_YN("Abrir o ficheiro (S ou N)? ", openFile);
+		if (toupper(openFile) == 'S') {
 			writeDrivers(drivers, fileName);
 			openNotepad(fileName);
 		}

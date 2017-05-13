@@ -88,21 +88,7 @@ template <class T> int ask_TestID(const std::vector<T> &vect) {
 
 			char repeatCicle;
 
-			do {
-				colorCout('?');
-				std::cout << "Try again (S ou N)? ";
-				std::cin >> repeatCicle;
-
-				char bufferContent;
-				std::cin.get(bufferContent);
-				if (bufferContent != '\n') {
-					std::cin.ignore(1000, '\n');
-					repeatCicle = 0;
-					colorCout('!');
-					std::cout << "Invalid Input" << std::endl;
-				}
-
-			} while (toupper(repeatCicle) != 'N' && toupper(repeatCicle) != 'S');
+			ask_YN("Try again (S ou N)? ", repeatCicle);
 
 			if (toupper(repeatCicle) == 'N')
 				return -1;

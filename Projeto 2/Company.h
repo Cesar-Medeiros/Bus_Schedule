@@ -10,15 +10,23 @@
 
 
 
-class Empresa{
+class Company{
  private:
- std::string nome;
- std::vector<Driver> condutores;
- std::vector<Line> linhas;
+ 
+ std::string name;
+
+ std::vector<Driver> drivers;
+ std::vector<Line> lines;
+ std::vector<Bus> bus;
+
+ std::string fileDrivers;
+ std::string fileLines;
+ std::string fileBus;
+
  public:
-	 Empresa(std::string nome, std::string fichCondutores, std::string fichLinhas);
+	 Company(std::string name, std::string fileDrivers, std::string fileLines, std::string fileBus);
   // metodos get
-	 std::string getNome() const;
+	 std::string getName() const;
   // metodos set
   // outros metodos
   void distribuiServico(); // funcao que implementa a afectacao de servico

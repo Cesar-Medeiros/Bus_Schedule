@@ -15,6 +15,8 @@ void welcomeScreen();
 
 int main() {
 
+	
+
 	std::string linesFile, driversFile, busFile;
 	std::vector<Line> line; //Vetor que contem todas as linhas existentes
 	std::vector<Driver> driver;//Vetor que contem todos os condutores existente
@@ -37,6 +39,8 @@ int main() {
 	linesFile = "linhas.txt";
 	driversFile = "condutores.txt";
 	busFile = "bus.txt";
+
+	Company company(std::string("Semprarrolar"), driversFile, linesFile, busFile);
 
 
 

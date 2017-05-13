@@ -2,9 +2,8 @@
 #include <set>
 
 void driverVisualize(const Driver &driver);
-unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers);
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
-void insertBusOrdered(std::vector<Bus> bus, Bus busTemp);
+void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp);
 
 
 
@@ -113,30 +112,14 @@ void addShift(Driver &driver, Bus &bus) {
 			break;
 		}
 
-		bool invalidInput;
 
-		do {
-			invalidInput = false;
-			finish = false;
+		char answer;
+		ask_YN("Deseja introduzir mais algum turno(S/N): ", answer);
 
-			char answer;
-			colorCout('?');
-			std::cout << "Deseja introduzir mais algum turno(S/N): ";
-			std::cin >> answer;
-
-			if (toupper(answer) == 'N')
-				finish = true;
-			else if (toupper(answer) != 'S')
-				bool invalidInput = true;
-
-		} while (invalidInput == true);
-
-
+		if (toupper(answer) == 'N')
+			finish = true;
 
 	}
-
-
-
 }
 
 void createShift(const std::string &fileName, std::vector<Driver> &drivers, std::vector<Bus> &bus) {
@@ -147,28 +130,13 @@ void createShift(const std::string &fileName, std::vector<Driver> &drivers, std:
 	if (driverIndex == -1) {
 
 		char answer;
-		do {
-			colorCout('?');
-			std::cout << "Deseja adicionar um condutor (S/N) ?";
-			std::cin >> answer;
-
-			char bufferContent;
-			std::cin.get(bufferContent);
-			if (bufferContent != '\n') {
-				std::cin.ignore(1000, '\n');
-				answer = 0;
-				colorCout('!');
-				std::cout << "Invalid Input" << std::endl;
-			}
-
-		} while (toupper(answer) != 'N' && toupper(answer) != 'S');
+		ask_YN("Deseja adicionar um condutor(S / N) ? " , answer);
 
 		if (toupper(answer) == 'N')
 			return;
 
 		else
 			driverIndex = addDriver(fileName, drivers);
-
 	}
 
 	Bus busTemp;
@@ -186,7 +154,6 @@ void createShift(const std::string &fileName, std::vector<Driver> &drivers, std:
 
 }
 
-
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index) {
 
 	int duration = (shift.getEndTime() - shift.getStartTime());
@@ -194,26 +161,38 @@ int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index) {
 	if (duration < 0)
 		return 4;
 
-	if (duration > driver.getMaxHours()*60)
+	else if (duration > driver.getMaxHours()*60)
 		return 1;
 
-	if (duration > driver.getMaxWeekWorkingTime()*60) 
+	else if (duration > driver.getMaxWeekWorkingTime()*60) 
 		return 2;
 
-	if (driver.getShifts().empty()){
-		index = 0;
-		return 0;
-	}
 	else {
+		unsigned int i = 0;
+		index = i;
+		for (i; i < driver.getShifts().size(); i++) {
 
-		for (unsigned int i = 1; i < driver.getShifts().size(); i++) {
-
-			if (driver.getShifts().at(i-1).getEndTime() + driver.getMinRestTime()*60 < shift.getStartTime()
-				&& driver.getMinRestTime()* 60 + shift.getEndTime() < driver.getShifts().at(i).getStartTime()) {
-				index = i;
-				return 0;
+			if (shift.getEndTime() + driver.getMinRestTime() * 60 < driver.getShifts().at(i).getStartTime()) {
+				if (i == 0 || shift.getStartTime() > driver.getMinRestTime() + driver.getShifts().at(i - 1).getEndTime()) {
+					index = i;
+					return 0;
+				}
 			}
+
+			if (i + 1 == driver.getShifts().size()) {
+				if (shift.getStartTime() > driver.getShifts().at(i).getEndTime() + driver.getMinRestTime() * 60) {
+					index = i + 1;
+					return 0;
+				}
+				else return 3;
+			}
+
+			
+
 		}
+
+
+		return 0;
 
 	}
 

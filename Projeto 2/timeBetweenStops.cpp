@@ -1,5 +1,7 @@
 #include "Header.h"
 
+std::vector<connectionInfo> stopsWithConnection(std::string stop, std::string lastStop, const std::vector<Line> &lines);
+void printConnection(connectionInfo connection);
 
 //printConnection
 //Imprime ligacoes
@@ -265,7 +267,7 @@ void printFinalPaths(std::vector < std::vector <connectionInfo>> paths)
 //Se n?o encontrar caminho direto aconselhar a ir a p? parte do caminho? Dificil de implementar
 //Est? funcional, agora ? s? otimizar
 //falta no cin das paragens aceitar paragens com mais do que uma palavra
-void teste(const std::vector<Line> &lines)
+void timeBetween2Stops(const std::vector<Line> &lines)
 {
 	std::string firstStop, lastStop;
 	colorCout('?');

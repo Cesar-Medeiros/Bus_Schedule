@@ -48,7 +48,7 @@ struct connectionInfo
 
 
 //Funcoes opcao - Menu principal
-void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile);
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
 void linesManager(std::string fileName, std::vector<Line> &lines);
 void driversManager(std::string fileName, std::vector<Driver> &drivers);
 void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers);
@@ -81,7 +81,7 @@ unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers
 
 
 //Funcoes - Autocarros
-void createShift(const std::string &fileName, std::vector<Driver> &drivers, std::vector<Bus> &bus);
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus);
 void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fileName);
 void writeBus(const std::vector<Bus> &bus, std::string fileName);
 //***********************************************************************************************

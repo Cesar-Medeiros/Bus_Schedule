@@ -70,7 +70,7 @@ void addShift(Driver &driver, Bus &bus) {
 
 	while (!finish) {
 
-		std::cout << std::endl;
+		
 		colorCout('?');
 		std::cout << "Introduza o tempo no formato Dia hh:mm (Ex: Seg 8:00): " << std::endl;
 
@@ -122,7 +122,7 @@ void addShift(Driver &driver, Bus &bus) {
 	}
 }
 
-void createShift(const std::string &fileName, std::vector<Driver> &drivers, std::vector<Bus> &bus) {
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus) {
 
 
 	unsigned int driverIndex = ask_TestID(drivers);
@@ -136,7 +136,7 @@ void createShift(const std::string &fileName, std::vector<Driver> &drivers, std:
 			return;
 
 		else
-			driverIndex = addDriver(fileName, drivers);
+			driverIndex = addDriver(driversFile, drivers);
 	}
 
 	Bus busTemp;
@@ -148,7 +148,7 @@ void createShift(const std::string &fileName, std::vector<Driver> &drivers, std:
 	//Inserir por ordem crescente os autocarros
 	insertBusOrdered(bus, busTemp);
 
-	writeBus(bus, "bus.txt"); //Depois e' so' acrescentar um parametro com o nome do ficheiro de condutores
+	writeBus(bus, busFile); //Depois e' so' acrescentar um parametro com o nome do ficheiro de condutores
 
 	driverVisualize(drivers.at(driverIndex));
 

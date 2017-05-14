@@ -17,7 +17,7 @@ private:
 	std::vector<Shift> shifts;         // assigned shifts
 
 public:
-	Driver(unsigned int id, std::string name, unsigned int maxHours, unsigned int maxWeekWorkingTime, unsigned int minRestTime, std::vector<Shift> shifts);
+	Driver(unsigned int id, std::string name, unsigned int maxHours, unsigned int maxWeekWorkingTime, unsigned int minRestTime, std::vector<Shift> shifts = std::vector<Shift>());
 	Driver() {
 	};
 

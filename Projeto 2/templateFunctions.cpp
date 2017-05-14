@@ -15,7 +15,7 @@ Le o ID e verifica se ja se encontra no vetor
 @param estruturaTemp estrutura Struct onde vai ser guardado o id e o vetor onde vai procurar o id.
 */
 
-template <class T> void readID(T &classVar, const std::vector<T> &vec) {
+template <class T> unsigned int readID(const std::vector<T> &vec) {
 
 	bool foundID;
 	unsigned int id;
@@ -36,7 +36,7 @@ template <class T> void readID(T &classVar, const std::vector<T> &vec) {
 
 	} while (foundID);
 
-	classVar.setId(id);
+	return id;
 }
 
 

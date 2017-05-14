@@ -41,7 +41,7 @@ void printSchedule(const std::vector<Line> &lines, int posLine) {
 	}
 
 
-	std::cout << std::endl;
+	
 	int acc;
 
 	for (int i = 0; i < lineMaxNum; i++) {
@@ -67,7 +67,7 @@ void printSchedule(const std::vector<Line> &lines, int posLine) {
 
 		}
 
-		std::cout << std::endl;
+		
 
 		//Quando comeca a proxima viagem a comecar na primeira paragem
 		timeFirstStop += lines.at(posLine).getFreq();

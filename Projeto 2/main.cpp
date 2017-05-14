@@ -18,10 +18,6 @@ int main() {
 	
 
 	std::string linesFile, driversFile, busFile;
-	std::vector<Line> line; //Vetor que contem todas as linhas existentes
-	std::vector<Driver> driver;//Vetor que contem todos os condutores existente
-	std::vector<Bus> bus;
-
 	welcomeScreen();
 
 
@@ -33,7 +29,11 @@ int main() {
 	colorCout('?');
 	std::cout << "Introduza o nome do ficheiro de condutores (nome.txt): ";
 	std::cin >> driversFile;
-	std::cout << std::endl;
+	
+	colorCout('?');
+	std::cout << "Introduza o nome do ficheiro de autocarros (nome.txt): ";
+	std::cin >> busFile;
+	
 	*/
 
 	linesFile = "linhas.txt";
@@ -41,14 +41,17 @@ int main() {
 	busFile = "bus.txt";
 
 	Company company(std::string("Semprarrolar"), driversFile, linesFile, busFile);
-
+	
+	std::vector<Line> *lines = company.pointerLines();
+	std::vector<Driver> *drivers = company.pointerDrivers();
+	std::vector<Bus> *bus = company.pointerBus();
 
 
 	//Se o ficheiro introduzido nao existe e o utilizador nao o quer criar - condicao é verdadeira
 
 
 	if (openFile(linesFile, driversFile) == 1) {
-		std::cout << std::endl;
+		
 		colorCout('!');
 		std::cout << "O programa vai terminar.\n\n";
 		exit(1);
@@ -56,22 +59,20 @@ int main() {
 	//==============================================================================
 
 	//Le os ficheiros para os respetivos vetores
-	readLines(line, linesFile);
-	readDrivers(driver, driversFile);
-	readBus(driver, bus, busFile);
+	readLines(*lines, linesFile);
+	readDrivers(*drivers, driversFile);
+	readBus(*drivers, *bus, busFile);
 
-
-
-	menu(line, driver, bus, linesFile, driversFile);
+	menu(*lines, *drivers, *bus, linesFile, driversFile, busFile);
 
 
 
 	//Tentar implementar - so escrever se o ficheiro for alterado(Ex: bool var global)
 
-	writeLines(line, linesFile);
-	writeDrivers(driver, driversFile);
+	writeLines(*lines, linesFile);
+	writeDrivers(*drivers, driversFile);
 
-	std::cout << std::endl;
+	
 	colorCout('*');
 	std::cout << "A sair do programa! \n\n";
 

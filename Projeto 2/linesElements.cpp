@@ -6,7 +6,7 @@ void insertBusStops(Line &line) {
 	std::string busStop;
 	std::vector<std::string> busStopList;
 
-	std::cout << std::endl;
+	
 	colorCout('?');
 	std::cout << "Introduza as paragens (ENTER para terminar): \n";
 
@@ -36,7 +36,7 @@ void insertTime(Line &line) {
 	for (uint i = 0; i < line.getBusStops().size()-1; i++) {
 
 		uint time;
-		std::cout << std::endl;
+		
 		colorCout('?');
 		std::cout << "Introduza o tempo entre " << line.getBusStop(i) << " e " << line.getBusStop(i+1) << ": " << std::endl;
 		readNum("--> ", time, false);

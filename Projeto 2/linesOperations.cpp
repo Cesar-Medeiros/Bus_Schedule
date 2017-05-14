@@ -7,20 +7,20 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine);
 
 void addLine(const std::string &fileName, std::vector<Line> &lines) {
 
-	Line line;
+	
 
-	readID(line, lines);
-
-	std::cout << std::endl;
+	unsigned int id = readID(lines);
 	unsigned int freq;
 	readNum("Introduza a frequencia com que o autocarro passa (em minutos): ", freq);
 	
+	Line line;
+	line.setId(id);
 	line.setFreq(freq);
 	insertBusStops(line);
 	insertTime(line);
 	sortID(line, lines);
 
-	std::cout << std::endl;
+	
 	colorCout('*');
 	std::cout << "Linha adicionada com sucesso ao ficheiro " << fileName << std::endl;
 
@@ -28,7 +28,7 @@ void addLine(const std::string &fileName, std::vector<Line> &lines) {
 
 void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 
-	std::cout << std::endl;
+	
 	int posLine = ask_TestID(lines); //Tentar perguntar Insira o ID da linha;
 	if (posLine == -1) return;
 
@@ -68,42 +68,19 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 			return;
 
 		case 1: {
-			readID(lines.at(posLine), lines);
+			unsigned int id = readID(lines);
+			lines.at(posLine).setId(id);
 			sortID(lines);
 			break;
 		}
 
 
 		case 2:
-			std::cout << std::endl;
+			
 			unsigned int freq;
 			readNum("Introduza a frequencia com que o autocarro passa (em minutos): ", freq);
 			lines.at(posLine).setFreq(freq);
 			break;
-
-/*
-		case 3: {
-			
-			std::string busStop;
-			std::vector<std::string> busStopList;
-
-
-			int initialStops, finalStops;
-
-			initialStops = lines.at(posLine).getBusStops().size();
-			insertBusStops(lines.at(posLine));
-			finalStops = lines.at(posLine).getBusStops().size();
-
-			if (initialStops != finalStops)
-				insertTime(lines.at(posLine));
-
-			break;
-		}
-
-		case 4:
-			insertTime(lines.at(posLine));
-			break;*/
-
 
 		case 3:
 			editStopsDurations(lines, posLine);
@@ -117,7 +94,7 @@ void changeLine(const std::string &fileName, std::vector<Line> &lines) {
 
 	} while (!validNumber);
 
-	std::cout << std::endl;
+	
 	colorCout('*');
 	std::cout << "Linha alterada com sucesso no ficheiro " << fileName << std::endl;
 }
@@ -128,12 +105,12 @@ void removeLine(const std::string &fileName, std::vector<Line> &lines) {
 
 	if (pos != -1) {
 		lines.erase(lines.begin() + pos);
-		std::cout << std::endl;
+		
 		colorCout('*');
 		std::cout << "Linha removida com sucesso ao ficheiro " << fileName << std::endl;
 	}
 	else {
-		std::cout << std::endl;
+		
 		colorCout('!');
 		std::cout << "Nao foi possivel eliminar a linha." << std::endl;
 	}

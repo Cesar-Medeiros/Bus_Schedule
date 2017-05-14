@@ -12,7 +12,7 @@ void driversManager(std::string fileName, std::vector<Driver> &drivers) {
 		std::cout << "\n\n |          Gestao de condutores          |\n";
 		std::cout << " |----------------------------------------|\n";
 		std::cout << " |     (1)  Criar novo condutor           |\n";
-		std::cout << " |     (2)  Alterar condutor              |\n";
+		std::cout << " |     (2)  Editar condutor               |\n";
 		std::cout << " |     (3)  Remover condutor              |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 

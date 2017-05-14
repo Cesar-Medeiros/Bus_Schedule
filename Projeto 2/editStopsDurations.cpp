@@ -20,10 +20,10 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 
 		case 1:
 		{	
-			std::cout << std::endl;
+			
 			for (unsigned int i = 0; i < lines.at(posLine).getBusStops().size(); i++)
 				std::cout << "Stop " << i + 1 << ": " << lines.at(posLine).getBusStop(i) << std::endl;
-			std::cout << std::endl;
+			
 
 
 			//New stop
@@ -70,10 +70,10 @@ void editStopsDurations(std::vector<Line> &lines, unsigned int posLine) {
 
 		case 2:
 		{
-			std::cout << std::endl;
+			
 			for (unsigned int i = 0; i < lines.at(posLine).getTimings().size(); i++)
 				std::cout << "Time " << i + 1 << ": " << lines.at(posLine).getTiming(i) << std::endl;
-			std::cout << std::endl;
+			
 
 			unsigned int timeIndex;
 			do {

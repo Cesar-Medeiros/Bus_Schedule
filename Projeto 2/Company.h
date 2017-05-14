@@ -7,6 +7,7 @@
 
 #include "Line.h"
 #include "Driver.h"
+#include "Bus.h"
 
 
 
@@ -30,4 +31,11 @@ class Company{
   // metodos set
   // outros metodos
   void distribuiServico(); // funcao que implementa a afectacao de servico
+
+  std::vector<Line> * pointerLines();
+
+  std::vector<Driver> * pointerDrivers();
+
+  std::vector<Bus> * pointerBus();
+
 };

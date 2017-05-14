@@ -14,7 +14,7 @@ void linesManager(std::string fileName, std::vector<Line> &lines) {
 		std::cout << "\n\n |            Gestao de linhas            |\n";
 		std::cout << " |----------------------------------------|\n";
 		std::cout << " |     (1)  Criar nova linha              |\n";
-		std::cout << " |     (2)  Alterar linha                 |\n";
+		std::cout << " |     (2)  Editar linha                  |\n";
 		std::cout << " |     (3)  Remover linha                 |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 

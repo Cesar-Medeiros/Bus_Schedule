@@ -24,3 +24,15 @@ std::string Company::getName() const{
 ///////////////////////////
 void Company::distribuiServico(){
 }
+
+std::vector<Line> * Company::pointerLines() {
+	return &lines;
+}
+
+std::vector<Driver> * Company::pointerDrivers() {
+	return &drivers;
+}
+
+std::vector<Bus> * Company::pointerBus() {
+	return &bus;
+}

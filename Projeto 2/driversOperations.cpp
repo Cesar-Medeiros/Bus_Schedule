@@ -3,54 +3,47 @@
 
 unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 	
-	Driver driver;
+	
 	std::string name;
 	unsigned int maxHours, maxWeekWorkingTime, minRestTime;
 	
 
-	readID(driver, drivers);
+	unsigned int id = readID(drivers);
 
-
-	std::cout << std::endl;
 	colorCout('?');
 	std::cout << "Introduza o nome do condutor: \n";
 	std::cout << "--> ";
 
 	getline(std::cin, name);
-	driver.setName(name);
 
 
-	std::cout << std::endl;
+	
 	colorCout('?');
 	std::cout << "Introduza a duracao de cada turno: \n";
 	readNum("--> ", maxHours, false);
 
 
-	std::cout << std::endl;
+	
 	colorCout('?');
 	std::cout << "Introduza o numero maximo de horas que pode conduzir por semana: \n";
 	readNum("--> ", maxWeekWorkingTime, false);
 
 
-	std::cout << std::endl;
+	
 	colorCout('?');
 	std::cout << "Introduza o numero de horas minimo de descanso entre turnos: \n";
 	readNum("--> ", minRestTime, false);
 
 
 
-
-	driver.setName(name);
-	driver.setMaxHours(maxHours);
-	driver.setMaxWeekWorkingTime(maxWeekWorkingTime);
-	driver.setMinRestTime(minRestTime);
+	Driver driver(id, name, maxHours, maxWeekWorkingTime, minRestTime);
 
 	//Defenir a ordem onde vai ser colocado o condutor
 	
 	unsigned int index = sortID(driver, drivers);
 
 
-	std::cout << std::endl;
+	
 	colorCout('*');
 	std::cout << "Condutor adicionado com sucesso ao ficheiro " << fileName << std::endl;
 
@@ -60,13 +53,13 @@ unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers
 void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 
-	std::cout << std::endl;
+	
 	
 	int posDriver = ask_TestID(drivers); //Tentar perguntar Insira o ID do condutor;
 
 	if (posDriver == -1) return;
 
-	std::cout << "\n\n|         Alterar condutor       |\n";
+	std::cout << "\n\n|         Editar condutor        |\n";
 	std::cout << "|--------------------------------|\n";
 	std::cout << "| (1) ID                         |\n";
 	std::cout << "| (2) Nome                       |\n";
@@ -90,17 +83,19 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 		case 0: //Unica maneira de sair
 			return;
 
-		case 1: 
-			readID(drivers.at(posDriver), drivers);
+		case 1: {
+			unsigned int id = readID(drivers);
+			drivers.at(posDriver).setId(id);
 			sortID(drivers); //Cria nova na posicao correta
 			break;
+		}
 
 
 		case 2:
 		{
 			std::string name;
 			colorCout('?');
-			std::cout << std::endl;
+			
 			std::cout << "Introduza o nome do condutor: \n";
 			std::cout << "--> ";
 			getline(std::cin, name);
@@ -111,7 +106,7 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 		case 3: {
 			unsigned int maxHours;
-			std::cout << std::endl;
+			
 			readNum("Introduza a duracao de cada turno: ", maxHours, true);
 			drivers.at(posDriver).setMaxHours(maxHours);
 			break;
@@ -120,7 +115,7 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 		case 4:{
 			unsigned int maxWeekWorkingTime;
-			std::cout << std::endl;
+			
 			readNum("Introduza o numero maximo de horas que pode conduzir por semana: ", maxWeekWorkingTime, true);
 			drivers.at(posDriver).setMaxWeekWorkingTime(maxWeekWorkingTime);
 			break;
@@ -129,7 +124,7 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 		case 5: {
 			unsigned int minRestTime;
-			std::cout << std::endl;
+			
 			readNum("Introduza o numero de horas minimo de descanso entre turnos: ", minRestTime, true);
 			drivers.at(posDriver).setMinRestTime(minRestTime);
 			break;
@@ -142,7 +137,7 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 	} while (!validNumber);
 
-	std::cout << std::endl;
+	
 	colorCout('*');
 	std::cout << "Condutor alterado com sucesso no ficheiro " << fileName << std::endl;
 }
@@ -153,12 +148,12 @@ void removeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 	if (pos != -1) {
 		drivers.erase(drivers.begin() + pos);
-		std::cout << std::endl;
+		
 		colorCout('*');
 		std::cout << "Condutor removido com sucesso ao ficheiro " << fileName << std::endl;
 	}
 	else {
-		std::cout << std::endl;
+		
 		colorCout('!');
 		std::cout << "Nao foi possivel eliminar o condutor." << std::endl;
 	}

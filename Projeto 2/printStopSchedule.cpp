@@ -48,7 +48,7 @@ void printStopSchedule(const std::vector<Line> &lines) {
 	}
 
 	if(stopInfoList.size() == 0){
-		std::cout << std::endl;
+		
 		colorCout('!');
 		std::cout << "Nao foi possivel encontrar a paragem " << busStopName << " !" << std::endl;
 		return;

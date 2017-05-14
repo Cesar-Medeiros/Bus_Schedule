@@ -29,12 +29,7 @@ void readDrivers(std::vector<Driver> &drivers, std::string fileName) {
 
 		//Gravar tudo em Drivers
 
-		Driver driver;
-		driver.setId(id);
-		driver.setName(name);
-		driver.setMaxHours(maxHours);
-		driver.setMaxWeekWorkingTime(maxWeekWorkingTime);
-		driver.setMinRestTime(minRestTime);
+		Driver driver(id, name, maxHours, maxWeekWorkingTime, minRestTime);
 
 		drivers.push_back(driver);
 	}

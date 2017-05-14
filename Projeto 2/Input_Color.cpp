@@ -71,6 +71,7 @@ void colorCout(char symbol) {
 
 	if (validSymbol) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colorNum);
+		std::cout << std::endl;
 		std::cout << "[" << symbol << "] ";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	}

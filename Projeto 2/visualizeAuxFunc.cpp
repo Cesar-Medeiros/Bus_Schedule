@@ -99,7 +99,7 @@ void driverVisualize(const Driver &driver)
 	std::cout << "Duração maxima de um turno: " << driver.getMaxHours() << std::endl;
 	std::cout << "Tempo minimo de descanso entre turnos: " << driver.getMinRestTime() << std::endl;
 	std::cout << "Tempo restante por semana: " << driver.getMaxWeekWorkingTime() << std::endl; //Criar novo atributo
-	std::cout << std::endl;
+	
 
 	std::cout << "Turnos existentes: " << std::endl;
 
@@ -113,7 +113,7 @@ void driverVisualize(const Driver &driver)
 
 		std::cout << "Fim do turno: ";
 		imprimirHoras(endTime);
-		std::cout << std::endl;
+		
 	}
 
 

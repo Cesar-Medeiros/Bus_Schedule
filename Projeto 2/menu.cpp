@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::multiset<Shift> shifts, const std::string &linesFile, const std::string &driversFile, const std::string &busFile) {
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile, const std::string &busFile) {
 
 
 
@@ -36,7 +36,7 @@ void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::multiset<
 			case 3: visualizeInfo(lines, drivers); break;
 			case 4: openNotepad(lines, linesFile);break;
 			case 5: openNotepad(drivers, driversFile);break;
-			case 6: createShift(driversFile, busFile, drivers, shifts); break;
+			case 6: createShift(driversFile, busFile, drivers, bus); break;
 			case 0: return; //Unica maneira de sair
 			default: validNumber = false;
 			}

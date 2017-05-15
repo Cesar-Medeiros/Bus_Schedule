@@ -64,7 +64,8 @@ int main() {
 	readDrivers(*drivers, driversFile);
 	*shifts = createBlankShifts(*lines);
 	readShift(*drivers, *shifts, busFile);
-	menu(*lines, *drivers, *shifts, linesFile, driversFile, busFile);
+
+	menu(*lines, *drivers, *bus, linesFile, driversFile, busFile);
 
 
 

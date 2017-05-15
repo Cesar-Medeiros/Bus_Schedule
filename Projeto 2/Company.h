@@ -19,10 +19,11 @@ class Company{
  std::vector<Driver> drivers;
  std::vector<Line> lines;
  std::vector<Bus> bus;
+ std::multiset<Shift> shifts;
 
  std::string fileDrivers;
  std::string fileLines;
- std::string fileBus;
+ std::string fileShift;
 
  public:
 	 Company(std::string name, std::string fileDrivers, std::string fileLines, std::string fileBus);
@@ -37,5 +38,7 @@ class Company{
   std::vector<Driver> * pointerDrivers();
 
   std::vector<Bus> * pointerBus();
+
+  std::multiset<Shift> * pointerShift();
 
 };

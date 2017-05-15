@@ -1,35 +1,38 @@
-/*
+
 #include "Header.h"
 #include <utility>
+#include <set>
 
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
 void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp);
 
-void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fileName) {
+
+
+void readShift(std::vector<Driver> &drivers, std::multiset<Shift> &shifts, std::string fileName) {
 
 	std::fstream busFile;
 	busFile.open(fileName, std::ios::in);
-	
+
 	if (!busFile.is_open())
 		return;
-	
+
 	busFile.peek(); //Para posteriormente testar se e o ficheiro esta vazio
 
 	while (!busFile.eof()) { // <--- Com a condicao anterior a flag eof fica se o ficheiro estiver vazio 
 
-
-		uint orderInLine, driverId, lineId;
-		std::vector<Shift> shifts;
-
+		unsigned int busLineId;
+		unsigned int driverId;
+		unsigned int busOrderNumber;
+		unsigned int startTime;
+		unsigned int endTime;
 		char separationChar;
 
-		busFile >> orderInLine >> separationChar >> driverId >> separationChar >> lineId >> separationChar;
+		busFile >> busLineId >> separationChar >> driverId >> separationChar >> busOrderNumber >> separationChar >> startTime >> separationChar  >> endTime;
 
-		uint startTime, endTime;
-		bool endOfLine = false;
-		
+
 		bool found;
 		size_t indexDriver;
+
 		for (indexDriver = 0; indexDriver < drivers.size(); indexDriver++) {
 
 			if (drivers.at(indexDriver).getId() == driverId) {
@@ -40,37 +43,29 @@ void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fi
 		}
 
 
-		Bus busTemp = Bus(orderInLine, driverId, lineId);
+		busFile >> separationChar >> startTime >> separationChar >> endTime >> separationChar;
 
-		while (!endOfLine) {
-			busFile >> separationChar >> startTime >> separationChar >> endTime >> separationChar;
-			
-			Shift shift(lineId, driverId, orderInLine, startTime, endTime);
+		Shift shift1(busLineId, -1, busOrderNumber, startTime, endTime);
+		Shift shift2(busLineId, driverId, busOrderNumber, startTime, endTime);
 
-			uint indexInsert;
-			verifyShift(drivers.at(indexDriver), shift, indexInsert);
+		uint indexInsert;
+		verifyShift(drivers.at(indexDriver), shift2, indexInsert);
+		
+		std::multiset<Shift>::iterator it;
+		it = shifts.find(shift1);
+		shifts.erase(it);
+		shifts.insert(shift2);
 
-			busTemp.insert(indexInsert, shift);
-			drivers.at(indexDriver).insert(indexInsert, shift);
-
-
-			char character = busFile.get();
-			if (character == '\n')
-				endOfLine = true;
-		}
-
-		//Insere os autocarros por ordem do busOrderInLine
-		insertBusOrdered(bus, busTemp);
+		drivers.at(indexDriver).insert(indexInsert, shift2);
 
 		busFile.peek(); //Para ativar a flag de eof se acabar o ficheiro
 	}
-	
 
 	busFile.close();
 }
 
 void writeBus(const std::vector<Bus> &bus, std::string fileName) {
-	
+
 	std::fstream busFile;
 	busFile.open(fileName, std::ios::out);
 
@@ -81,10 +76,10 @@ void writeBus(const std::vector<Bus> &bus, std::string fileName) {
 
 	for (unsigned int i = 0; i < bus.size(); i++) {
 		busFile << bus.at(i).getBusOrderInLine() << " ; " << bus.at(i).getDriverId() << " ; " << bus.at(i).getLineId() << " ; ";
-		
+
 		for (unsigned int j = 0; j < bus.at(i).getSchedule().size(); j++) {
 			busFile << "[" << bus.at(i).getSchedule().at(j).getStartTime() << " , " << bus.at(i).getSchedule().at(j).getEndTime() << "]";
-			
+
 			if (j + 1 != bus.at(i).getSchedule().size())
 				busFile << ",";
 		}
@@ -92,7 +87,6 @@ void writeBus(const std::vector<Bus> &bus, std::string fileName) {
 	}
 
 }
-
 void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp) {
 	if (bus.empty())
 		bus.push_back(busTemp);
@@ -114,4 +108,6 @@ void insertBusOrdered(std::vector<Bus> &bus, Bus busTemp) {
 			}
 		}
 	}
-}*/
+}
+
+

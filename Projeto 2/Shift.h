@@ -7,9 +7,10 @@
 
 
 class Shift{
-
+	friend bool operator<(Shift shift1, Shift shift2);
 	friend class Driver;
 	friend class Bus;
+
  private:
   unsigned int busLineId;
   unsigned int driverId;  
@@ -36,5 +37,5 @@ class Shift{
   void setEndTime(unsigned int);
 
   // other methods
-
+  bool operator<(Shift shift);
 };

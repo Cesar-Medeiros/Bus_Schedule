@@ -126,6 +126,9 @@
     <ClCompile Include="busManager.cpp">
       <Filter>Source Files\Bus</Filter>
     </ClCompile>
+    <ClCompile Include="ShiftFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">

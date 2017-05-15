@@ -162,6 +162,7 @@
     <ClCompile Include="readLines.cpp" />
     <ClCompile Include="scaling.cpp" />
     <ClCompile Include="Shift.cpp" />
+    <ClCompile Include="ShiftFunc.cpp" />
     <ClCompile Include="templateFunctions.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="timeBetweenStops.cpp" />

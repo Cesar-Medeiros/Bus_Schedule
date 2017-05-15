@@ -1,5 +1,6 @@
 #include "Header.h"
 #include <set>
+#include <utility>
 
 void driverVisualize(const Driver &driver);
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
@@ -148,7 +149,7 @@ void createShift(const std::string &driversFile, const std::string &busFile, std
 	//Inserir por ordem crescente os autocarros
 	insertBusOrdered(bus, busTemp);
 
-	writeBus(bus, busFile); //Depois e' so' acrescentar um parametro com o nome do ficheiro de condutores
+	//writeBus(bus, busFile); //Depois e' so' acrescentar um parametro com o nome do ficheiro de condutores
 
 	driverVisualize(drivers.at(driverIndex));
 
@@ -200,6 +201,95 @@ int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index) {
 
 }
 
+int busesNeeded(const Line &line)
+{
+	//n = (int)((double)tempo_ida_e_volta / frequencia_dos_autocarros_na_linha + 1.0);
+	int time = 0;
+	for (int i = 0; i < line.getTimings().size(); i++)
+	{
+		time += line.getTimings().at(i);
+	}
+	time *= 2;
+	//cout << "Tempo de ida e volta: " << time << endl;
+
+	int buses = (int)((double)time / (line.getFreq() + 1.0));
+
+	//cout << "Numero de autocarros: " << buses << endl;;
+
+	std::vector<std::pair<int, int>> info;
+
+	int begin = 0;
+
+	/*for (int i = 0; i < buses; i++)
+	{
+		info.push_back(make_pair(i, begin));
+	}*/
+	/*
+	for (int i = 0; i < info.size(); i++)
+	{
+	int hours = begin / 60;
+	int minutes = begin - hours * 60;
+	hours += 9;
+	cout << i + 1 << " autocarro que sai às " << hours << ":" << minutes  << "chega passados " << time  << endl;
+	begin += line.getFreq();
+	}
+	*/
+	return buses;
+}
+
+bool operator<(Shift shift1, Shift shift2)
+{
+	if (shift1.getBusLineId() < shift2.getBusLineId()) return true;
+	else return false;
+}
+
+std::multiset<Shift> createBlankShifts(std::vector<Line> &lines)
+{
+	std::multiset<Shift> shifts;
+	for (int i = 0; i < lines.size(); i++)
+	{
+		int time = 0; //tempo total da linha
+		for (int j = 0; j < lines.at(i).getTimings().size(); j++)
+		{
+			time += lines.at(i).getTimings().at(j);
+		}
+
+		time *= 2;
+
+		int buses = busesNeeded(lines.at(i)); //numero de autocarros necessários
+		int begin = 9 * 60;
+		int end = begin + time;
+
+		int busNumber = 1;
+
+		while (begin != 23 * 60) //enquanto o tempo inicial é menor que 23h
+		{
+			Shift temp;
+			temp.setBusLineId(lines.at(i).getId());
+			temp.setBusOrderNumber(busNumber);
+			temp.setDriverId(-1);
+			temp.setStartTime(begin);
+			temp.setEndTime(end);
+			if (busNumber == buses) busNumber == 1;
+			begin += lines.at(i).getFreq();
+			end += lines.at(i).getFreq();
+			shifts.insert(temp);
+
+		}
+	}
+	//std::cout << shifts.size() << std::endl;
+	/*for (int i = 0; i < shifts.size(); i++)
+	{
+	cout << "------------------------------------" << endl;
+	cout << "Autocarro numero " << shifts.at(i).getBusOrderNumber() << endl;
+	cout << "Linha numero" << shifts.at(i).getBusLineId() << endl;
+	cout << "Conduzido pelo driver ID (-1 vazio)" << shifts.at(i).getDriverId() << endl;
+	cout << "Inicio do turno " << shifts.at(i).getStartTime() << endl;
+	cout << "Fim do turno " << shifts.at(i).getEndTime() << endl;
+	cout << "------------------------------------" << endl;
+	}*/
+	return shifts;
+}
 
 void deleteShift();
 void editShift();

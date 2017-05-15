@@ -54,7 +54,7 @@ void driversManager(std::string fileName, std::vector<Driver> &drivers);
 void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers);
 //***************************************************************************************
 
-
+std::multiset<Shift> createBlankShifts(std::vector<Line> &lines);
 
 //Funcoes - Notepad
 void openNotepad(std::vector<Line> &lines, std::string fileName);
@@ -80,11 +80,16 @@ unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers
 
 
 
-//Funcoes - Autocarros
+//Funcoes - Shift
+void readShift(std::vector<Driver> &drivers, std::multiset<Shift> &shifts, std::string fileName);
 void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus);
+//*********************************************************************************************
+
+/*Funcoes - Autocarros
+
 void readBus(std::vector<Driver> &drivers, std::vector<Bus> &bus, std::string fileName);
 void writeBus(const std::vector<Bus> &bus, std::string fileName);
-//***********************************************************************************************
+//************************************************************************************************/
 
 
 

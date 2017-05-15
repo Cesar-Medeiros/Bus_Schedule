@@ -1,5 +1,6 @@
 #include "Header.h"
 
+/*
 void addBus(const std::string &fileName, std::vector<Bus> &bus);
 void changeBus(const std::string &fileName, std::vector<Bus> &bus);
 void removeBus(const std::string &fileName, std::vector<Bus> &bus);
@@ -65,4 +66,4 @@ void busManager(std::string fileName, std::vector<Bus> &bus) {
 	} while (true);
 }
 
-
+*/

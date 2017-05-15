@@ -1,11 +1,11 @@
 #include "Company.h"
 
 
-Company::Company(std::string name, std::string fileDrivers, std::string fileLines, std::string fileBus){
+Company::Company(std::string name, std::string fileDrivers, std::string fileLines, std::string fileShift){
 	this->name = name;
-	this->fileDrivers = fileBus;
+	this->fileDrivers = fileDrivers;
 	this->fileLines = fileLines;
-	this->fileBus = fileBus;
+	this->fileShift = fileShift;
 }
 
 ////////////////////////////////
@@ -35,4 +35,8 @@ std::vector<Driver> * Company::pointerDrivers() {
 
 std::vector<Bus> * Company::pointerBus() {
 	return &bus;
+}
+
+std::multiset<Shift> * Company::pointerShift() {
+	return &shifts;
 }

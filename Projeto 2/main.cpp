@@ -45,6 +45,7 @@ int main() {
 	std::vector<Line> *lines = company.pointerLines();
 	std::vector<Driver> *drivers = company.pointerDrivers();
 	std::vector<Bus> *bus = company.pointerBus();
+	std::multiset<Shift> *shifts = company.pointerShift();
 
 
 	//Se o ficheiro introduzido nao existe e o utilizador nao o quer criar - condicao é verdadeira
@@ -61,7 +62,8 @@ int main() {
 	//Le os ficheiros para os respetivos vetores
 	readLines(*lines, linesFile);
 	readDrivers(*drivers, driversFile);
-	readBus(*drivers, *bus, busFile);
+	*shifts = createBlankShifts(*lines);
+	readShift(*drivers, *shifts, busFile);
 
 	menu(*lines, *drivers, *bus, linesFile, driversFile, busFile);
 

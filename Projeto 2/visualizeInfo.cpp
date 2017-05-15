@@ -11,7 +11,7 @@ void driverVisualize(const Driver &driver);
 
 
 
-void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers) {
+void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers, const std::multiset<Shift> &shifts) {
 
 
 
@@ -26,6 +26,7 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 		std::cout << " |     (4)  Visualizar uma linha          |\n";
 		std::cout << " |     (5)  Linhas com uma paragem        |\n";
 		std::cout << " |     (6)  Informacao de um condutor     |\n";
+		std::cout << " |     (7)  Imprimir autocarros           |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 
 		bool validNumber;
@@ -84,6 +85,10 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 					driverVisualize(drivers.at(posDriver));
 				break;
 			}
+			case 7: {
+				freeBuses(shifts, 201, 1);
+				break;
+			}
 
 			default: validNumber = false;
 			}
@@ -94,5 +99,12 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 	} while (true);
 
 }
-
+void removeShift(std::vector<Shift> shifts, Shift shift)
+{
+	for (int i = 0; i < shifts.size(); i++)
+	{
+		if (shifts.at(i).getBusLineId() == shift.getBusLineId() && shifts.at(i).getBusOrderNumber() == shift.getBusOrderNumber() && shifts.at(i).getDriverId() == shift.getDriverId() && shifts.at(i).getEndTime() == shift.getEndTime() && shifts.at(i).getStartTime() == shift.getStartTime())
+			shifts.erase(shifts.begin() + i);
+	}
+}
 

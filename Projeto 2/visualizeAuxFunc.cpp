@@ -71,10 +71,9 @@ void printCentered(std::ostream& out, const std::string info, const unsigned int
 
 
 void imprimirHoras(uint time) {
-	uint weekDay = time / ((23-8) * 60);
-	uint hour = (time % ((23-8) * 60)) / 60 + 8;
-	uint min = (time % ((23-8) * 60)) % 60;
-
+	uint weekDay = time / (24 * 60);
+	uint hour = (time % (24 * 60)) / 60;
+	uint min = (time % (24 * 60)) % 60;
 	std::string text;
 	switch (weekDay) {
 	case 0: text = "Seg"; break;
@@ -86,7 +85,7 @@ void imprimirHoras(uint time) {
 	case 6: text = "Dom"; break;
 	}
 	std::cout << text << ", ";
-	std::cout << Time(hour, min, 5);
+	std::cout << Time(hour, min, 5) << std::endl;
 
 }
 

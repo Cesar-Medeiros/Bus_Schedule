@@ -45,12 +45,11 @@ void printSchedule(const std::vector<Line> &lines, int posLine) {
 	int acc;
 
 	for (int i = 0; i < lineMaxNum; i++) {
-
+		std::cout << std::endl;
 		std::cout << "\t\t";
 		acc = 0; // Acumulacao dos minutes das paragens
-
 		for (uint i = 0; i < lines.at(posLine).getBusStops().size(); i++) {
-
+			
 			//Calcular hours e minutes
 			uint minutes, hours, sizeW;
 

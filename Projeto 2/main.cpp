@@ -64,7 +64,26 @@ int main() {
 	readDrivers(*drivers, driversFile);
 	*shifts = createBlankShifts(*lines);
 	readShift(*drivers, *shifts, busFile);
+<<<<<<< Updated upstream
+
+	menu(*lines, *drivers, *bus, linesFile, driversFile, busFile);
+=======
+<<<<<<< Updated upstream
 	menu(*lines, *drivers, *shifts, linesFile, driversFile, busFile);
+=======
+<<<<<<< Updated upstream
+
+	menu(*lines, *drivers, *bus, linesFile, driversFile, busFile);
+=======
+<<<<<<< Updated upstream
+	menu(*lines, *drivers, *shifts, linesFile, driversFile, busFile);
+=======
+
+	menu(*lines, *drivers, *bus, *shifts, linesFile, driversFile, busFile);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 

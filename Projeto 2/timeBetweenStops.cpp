@@ -118,10 +118,12 @@ void printPath(std::vector <connectionInfo> path)
 	std::cout << "A viagem ira demorar " << time << " minutos" << std::endl;
 	for (int i = 0; i < path.size(); i++)
 	{
+
 		
 		std::cout << "Paragem " << " --- " << stops.at(i);
 		if (i != 0) std::cout << " --- " << " Linha " << line.at(i) << std::endl;
 		else std::cout <<" ---  Paragem Inicial" << std::endl;
+
 	}
 	std::cout << std::endl;
 }
@@ -213,6 +215,7 @@ std::vector < std::vector <connectionInfo>> bestPaths(std::vector < std::vector 
 	for (int i = 0; i < paths.size(); i++)
 	{
 		if (bestPaths.size() < 2)
+		if (bestPaths.size() < 10)
 		{
 			bestPaths.push_back(paths.at(i));
 		}
@@ -225,6 +228,7 @@ std::vector < std::vector <connectionInfo>> bestPaths(std::vector < std::vector 
 	}
 	return bestPaths;
 }
+
 
 //FasterCompleted
 //devolve o caminho mais r?pido de um vetor de caminhos
@@ -249,17 +253,55 @@ std::vector <connectionInfo> fasterCompleted(std::vector < std::vector <connecti
 
 //printFinalPaths
 //imprime as rotas finais encontradas
-void printFinalPaths(std::vector < std::vector <connectionInfo>> paths)
+void printFinalPaths(std::vector < std::vector <connectionInfo>> paths, std::string firstStop, std::string lastStop)
 {
 	std::cout << "----------------------------" << std::endl;
+
 	std::cout << "Os caminhos encontrados foram:" << std::endl;
 	std::cout << std::endl << std::endl;
+
 	for (int i = 0; i < paths.size(); i++)
 	{
 		std::cout << "Caminho " << i + 1 << std::endl;
 		printPath(paths.at(i));
 		std::cout << std::endl;
 	}
+}
+
+//ultimateRefinery
+//last modifications to give the brest 3 results
+std::vector < std::vector <connectionInfo>> ultimateRefinery(std::vector < std::vector <connectionInfo>> refinedPaths)
+{
+	std::vector<int> times;
+	for (int i = 0; i < refinedPaths.size(); i++)
+	{
+		int time = 0;
+		for (int j = 0; j < refinedPaths.at(i).size(); j++)
+		{
+			time += refinedPaths.at(i).at(j).time;
+			//adicionar tempo medio de espera
+			if (j != refinedPaths.at(i).size() - 1)
+			{
+				if (refinedPaths.at(i).at(j).line != refinedPaths.at(i).at(j + 1).line) time += 5;
+			}
+		}
+		times.push_back(time);
+	}
+	std::vector < std::vector <connectionInfo>> bestPaths;
+	for (int i = 0; i < refinedPaths.size(); i++)
+	{
+		if (bestPaths.size() < 3)
+		{
+			bestPaths.push_back(refinedPaths.at(i));
+		}
+		else
+		{
+			int time = pathTime(refinedPaths.at(i));
+			std::vector <int> longerPathInfo = longerPath(bestPaths);
+			if (time < longerPathInfo.at(1)) bestPaths.at(longerPathInfo.at(0)) = refinedPaths.at(i);
+		}
+	}
+	return bestPaths;
 }
 
 
@@ -275,14 +317,14 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 	colorCout('?');
 	std::cout << "Insira a paragem inicial: ";
 	getline(std::cin, firstStop);
-	
+
 
 	colorCout('?');
 	std::cout << "Insira a paragem final: ";
 	getline(std::cin, lastStop);
 
 	std::vector<connectionInfo> connections = stopsWithConnection(firstStop, "", lines);
-	
+
 
 
 	if (connections.empty())
@@ -292,14 +334,14 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 		return;
 	}
 	std::vector<connectionInfo> connectionsF = stopsWithConnection(lastStop, "", lines);
-	if(connectionsF.empty()){
+	if (connectionsF.empty()) {
 		colorCout('!');
 		std::cout << "Ultima paragem inserida nao exite" << std::endl;
 		return;
 	}
 
 
-	
+
 
 	//colocar no vetor de caminhos as liga??es iniciais com a paragem inicial
 	std::vector <std::vector <connectionInfo>> paths;
@@ -405,7 +447,7 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 	{
 		//de todos os caminhos completos refina de modo a selecionar at? os tr?s melhores 
 		std::vector <std::vector <connectionInfo>> refinedPaths = bestPaths(completedPaths);
-
+		refinedPaths = ultimateRefinery(refinedPaths);
 		//adiciona a primeira paragem, falta mudar para p?r a paragem inicial, e tamb?m contabilizar e aconselhar sobre atrasos de mudan?as de linha
 		connectionInfo originStop;
 		originStop.line = 0;
@@ -416,7 +458,7 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 		for (int i = 0; i < refinedPaths.size(); i++)
 			refinedPaths.at(i).insert(refinedPaths.at(i).begin(), originStop);
 
-		printFinalPaths(refinedPaths);
+		printFinalPaths(refinedPaths, firstStop, lastStop);
 
 	}
 	else std::cout << "O algoritmo nao encontrou solucao" << std::endl;

@@ -48,7 +48,23 @@ struct connectionInfo
 
 
 //Funcoes opcao - Menu principal
+<<<<<<< Updated upstream
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
+=======
+<<<<<<< Updated upstream
 void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::multiset<Shift> shifts, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
+=======
+<<<<<<< Updated upstream
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
+=======
+<<<<<<< Updated upstream
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::multiset<Shift> shifts, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
+=======
+void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::vector<Bus> &bus, std::multiset<Shift> &shifts, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 void linesManager(std::string fileName, std::vector<Line> &lines);
 void driversManager(std::string fileName, std::vector<Driver> &drivers);
 void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers, const std::multiset<Shift> &shifts);
@@ -82,7 +98,24 @@ unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers
 
 //Funcoes - Shift
 void readShift(std::vector<Driver> &drivers, std::multiset<Shift> &shifts, std::string fileName);
+<<<<<<< Updated upstream
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus);
+=======
+<<<<<<< Updated upstream
 void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::multiset<Shift> &shifts);
+=======
+<<<<<<< Updated upstream
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus);
+=======
+<<<<<<< Updated upstream
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::multiset<Shift> &shifts);
+=======
+void createShift(const std::string &driversFile, const std::string &busFile, std::vector<Driver> &drivers, std::vector<Bus> &bus);
+void freeBuses(std::multiset<Shift> shifts, int line, int numberOfBus);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 //*********************************************************************************************
 
 /*Funcoes - Autocarros

@@ -211,6 +211,7 @@ std::vector < std::vector <connectionInfo>> bestPaths(std::vector < std::vector 
 
 	for (int i = 0; i < paths.size(); i++)
 	{
+		if (bestPaths.size() < 2)
 		if (bestPaths.size() < 10)
 		{
 			bestPaths.push_back(paths.at(i));

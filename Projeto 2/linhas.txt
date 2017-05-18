@@ -1,4 +1,7 @@
-201 ; 20 ; Paranhos, Monte dos Burgos, ISEP, Hospital de Sao Joao; 10, 20, 45
-207 ; 10 ; Aliados, Carmo, Galiza, Rotunda da Boavista; 5, 20, 20
-505 ; 30 ; Matosinhos, 7 Bicas, Rotunda dos Produtos Estrela, Senhora da Hora; 40, 30, 45
-506 ; 15 ; Ribeira, Alfandega, Fluvial, Foz; 10, 25, 55
+100 ; 35 ; Boavista, ISEP, Sao Bento, 24 de Agosto, Vila do Conde; 25, 30, 15, 20
+205 ; 45 ; Sao Bento, Aliados, Carmo, Marques; 5, 15, 95
+301 ; 35 ; Hospital de Sao Joao, Cedofeita, Campo Alegre, Palacio de Cristal; 25, 15, 20, 25
+404 ; 40 ; Cedofeita, Gaia, Maia, Aguas Santas, Ermesinde, Rio Tinto, Vila Cova; 20, 10, 20, 25, 5, 10
+505 ; 50 ; FEUP, Hospital de Sao Joao, Carmo, Boavista, Campo Alegre; 5, 20, 15, 5
+506 ; 45 ; Faria Guimaraes, FEUP, Ribeira, Campo Alegre, Gaia; 20, 10, 10, 30
+704 ; 60 ; Boavista, Campo Alegre, ISEP, Parque da Cidade, Aliados; 5, 20, 25, 15

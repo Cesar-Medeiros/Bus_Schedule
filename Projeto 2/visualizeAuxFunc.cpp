@@ -43,8 +43,8 @@ void showLine(const std::vector<Line> &lines) {
 	int posLine = ask_TestID(lines);
 
 	if (posLine != -1) {
-		std::cout << "\n\t\t ID = " << lines.at(posLine).getId() << std::endl;
-		std::cout << "\n\t\t Frequencia = " << lines.at(posLine).getFreq() << " minutos" << "\n\n\t\t ";
+		std::cout << "\n ID = " << lines.at(posLine).getId() << std::endl;
+		std::cout << "\n Frequencia = " << lines.at(posLine).getFreq() << " minutos" << "\n\n ";
 
 		for (uint i = 0; i < lines.at(posLine).getBusStops().size(); i++) {
 			std::cout << lines.at(posLine).getBusStop(i);
@@ -91,31 +91,34 @@ void imprimirHoras(uint time) {
 }
 
 
-void driverVisualize(const Driver &driver)
+void driverVisualize(const Driver &driver, bool displayShifts)
 {
 
 
 	std::cout << "Id: " << driver.getId() << std::endl;
 	std::cout << "Name: " << driver.getName() << std::endl;
-	std::cout << "Duração maxima de um turno: " << driver.getMaxHours() << std::endl;
+	std::cout << "Duracao maxima de um turno: " << driver.getMaxHours() << std::endl;
 	std::cout << "Tempo minimo de descanso entre turnos: " << driver.getMinRestTime() << std::endl;
 	std::cout << "Tempo restante por semana: " << driver.getMaxWeekWorkingTime() << std::endl; //Criar novo atributo
 	
 
+	if (displayShifts) {
 	std::cout << "Turnos existentes: " << std::endl;
 
-
+	
 	for (uint i = 0; i < driver.getShifts().size(); i++) {
 		uint startTime = driver.getShifts().at(i).getStartTime();
 		uint endTime = driver.getShifts().at(i).getEndTime();
-
-		std::cout << "Inicio do turno: ";
+		
+		std::cout << "\n\nInicio do turno: ";
 		imprimirHoras(startTime);
+		std::cout << std::endl;
 
 		std::cout << "Fim do turno: ";
 		imprimirHoras(endTime);
 		
 	}
-
+	}
+	std::cout << std::endl;
 
 }

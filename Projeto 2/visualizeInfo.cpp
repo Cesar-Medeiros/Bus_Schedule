@@ -7,11 +7,12 @@ void printStopSchedule(const std::vector<Line> &lines);
 void showLine(const std::vector<Line> &line);
 void searchBusStop(const std::vector<Line> &line);
 void printCentered(std::ostream& out, const std::string info, const unsigned int sizew);
-void driverVisualize(const Driver &driver);
+void driverVisualize(const Driver &driver, bool displayShift = true);
+void busManager(const std::multiset<Shift> &shifts, const std::vector<Driver> &drivers);
 
 
 
-void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers) {
+void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers, const std::multiset<Shift> &shifts) {
 
 
 
@@ -26,6 +27,7 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 		std::cout << " |     (4)  Visualizar uma linha          |\n";
 		std::cout << " |     (5)  Linhas com uma paragem        |\n";
 		std::cout << " |     (6)  Informacao de um condutor     |\n";
+		std::cout << " |     (7)  Autocarros                    |\n";
 		std::cout << " |     (0)  Menu principal                |\n\n";
 
 		bool validNumber;
@@ -78,11 +80,14 @@ void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &dr
 				break;
 
 			case 6: {
-
 				int posDriver = ask_TestID(drivers);
 				if (posDriver != -1)
 					driverVisualize(drivers.at(posDriver));
 				break;
+			}
+
+			case 7: {
+				busManager(shifts,drivers);
 			}
 
 			default: validNumber = false;

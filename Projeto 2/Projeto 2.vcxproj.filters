@@ -25,11 +25,11 @@
     <Filter Include="Source Files\Visualize">
       <UniqueIdentifier>{9498bb75-aa2f-4676-a38d-c2cf346ff9bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Bus">
-      <UniqueIdentifier>{8556e845-2b87-4e7c-831d-87e9dcebc717}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Scaling">
       <UniqueIdentifier>{d42f192e-8590-4109-ad22-2278ebb2d239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bus">
+      <UniqueIdentifier>{26a3f44a-ca8d-4de9-8524-fa06686ce083}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,17 +117,14 @@
     <ClCompile Include="templateFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bus_RW.cpp">
-      <Filter>Source Files\Bus</Filter>
-    </ClCompile>
     <ClCompile Include="timeBetweenStops.cpp">
       <Filter>Source Files\Visualize</Filter>
     </ClCompile>
-    <ClCompile Include="busManager.cpp">
-      <Filter>Source Files\Bus</Filter>
-    </ClCompile>
     <ClCompile Include="ShiftFunc.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="busManager.cpp">
+      <Filter>Source Files\Bus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

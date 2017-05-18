@@ -5,7 +5,6 @@
 
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
 
-
 void readShift(std::vector<Driver> &drivers, std::multiset<Shift> &shifts, std::string fileName) {
 
 	std::fstream shiftFile;
@@ -52,6 +51,7 @@ void readShift(std::vector<Driver> &drivers, std::multiset<Shift> &shifts, std::
 		shifts.insert(shift2);
 
 		drivers.at(indexDriver).insert(indexInsert, shift2);
+		drivers.at(indexDriver).addMinutes(endTime - startTime);
 
 		shiftFile.get();
 		shiftFile.peek(); //Para ativar a flag de eof se acabar o ficheiro

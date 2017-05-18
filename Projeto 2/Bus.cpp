@@ -32,6 +32,10 @@ std::vector<Shift> Bus::getSchedule() const{
   return schedule;
 }
 
+void Bus::setBusOrderInLine(unsigned int orderInLine) {
+	this->orderInLine = orderInLine;
+}
+
 void Bus::insert(unsigned int index, Shift shift) {
 	schedule.insert(schedule.begin() + index, shift);
 }

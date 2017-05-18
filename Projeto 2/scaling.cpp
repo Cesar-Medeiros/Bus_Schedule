@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void driverVisualize(const Driver &driver);
+void driverVisualize(const Driver &driver,bool displayShifts = true);
 int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index);
 void writeShift(const std::multiset<Shift> shifts, std::string fileName);
 bool verifyShift(const Driver &driver, const Shift &shift);
@@ -51,7 +51,7 @@ unsigned int timeShift() {
 
 		if (invalidInput) {
 			colorCout('!');
-			std::cout << "Invalid Input\n\n";
+			std::cout << "Input Invalido\n\n";
 		}
 
 	} while (invalidInput);
@@ -80,7 +80,7 @@ vector<Shift> shiftsForDay(vector<Shift> shifts, int index)
 
 
 //transferencia de multiset para vetor
-vector<Shift> conversionMV(multiset<Shift> &shifts)
+vector<Shift> conversionMV(const multiset<Shift> &shifts)
 {
 	std::multiset<Shift>::iterator it;
 	vector<Shift> shiftsV;
@@ -101,7 +101,7 @@ int verifyShift(const Driver &driver, const Shift &shift, unsigned int &index) {
 	else if (duration > driver.getMaxHours()*60)
 		return 1;
 
-	else if (duration > driver.getMaxWeekWorkingTime()*60) 
+	else if (duration > driver.getMaxWeekWorkingTime()*60- driver.getMinutesUntilNow())
 		return 2;
 
 	else {
@@ -141,7 +141,7 @@ bool verifyShift(const Driver &driver, const Shift &shift) {
 
 	int duration = (shift.getEndTime() - shift.getStartTime());
 
-	if (duration < 0 || duration > driver.getMaxHours() * 60 || duration > driver.getMaxWeekWorkingTime() * 60)
+	if (duration < 0 || duration > driver.getMaxHours() * 60 || duration > driver.getMaxWeekWorkingTime() * 60 - driver.getMinutesUntilNow())
 		return false;
 
 	else {
@@ -206,6 +206,7 @@ bool operator<(Shift shift1, Shift shift2)
 
 std::multiset<Shift> createBlankShifts(std::vector<Line> &lines)
 {
+	int busNumber = 1;
 	std::multiset<Shift> shifts;
 	for (int i = 0; i < lines.size(); i++)
 	{
@@ -221,16 +222,16 @@ std::multiset<Shift> createBlankShifts(std::vector<Line> &lines)
 		int begin = 0;
 		int end = begin + time;
 
-		int busNumber = 1;
+		
 
 		while (begin < (23-8) * 60 * 7) //enquanto o tempo inicial é menor que 23h
 		{
-			Shift temp;
-			temp.setBusLineId(lines.at(i).getId());
-			temp.setBusOrderNumber(busNumber);
-			temp.setDriverId(-1);
-			temp.setStartTime(begin);
-			temp.setEndTime(end);
+			if (begin % lines.at(i).getFreq() == 0)
+				if (begin % time == 0)
+					busNumber = 0;
+				else busNumber++;
+
+			Shift temp(lines.at(i).getId(), -1, busNumber, begin, end);
 			if (busNumber == buses) busNumber == 1;
 			begin += lines.at(i).getFreq();
 			end += lines.at(i).getFreq();
@@ -299,7 +300,7 @@ vector<Shift> shiftsForBus(vector<Shift> &shifts, int numberOfTheBus)
 	return busShifts;
 }
 
-bool validShift(vector<Shift> &shifts, int begin, int end)
+bool validShift(vector<Shift> &shifts, unsigned int  begin, unsigned int  end, unsigned int &busNumber)
 {
 	bool first = false;
 	bool second = false;
@@ -311,7 +312,11 @@ bool validShift(vector<Shift> &shifts, int begin, int end)
 		{
 			if (shifts.at(i).getEndTime() == end) second = true;
 		}
-		if (first && second) return true;
+		if (first && second) {
+			busNumber = shifts.at(i).getBusOrderNumber();
+			return true;
+				
+		}
 	}
 	return false;
 }
@@ -369,7 +374,7 @@ void printHora(uint time, uint begin)
 }
 
 //print de shifts formatado
-void printFreeShifts(vector<Shift> freeShifts, int line, int numberOfBus)
+void printFreeShifts(vector<Shift> freeShifts, int line)
 {
 	vector <pair <int, int>> tempos;
 
@@ -383,7 +388,7 @@ void printFreeShifts(vector<Shift> freeShifts, int line, int numberOfBus)
 
 	}
 
-	cout << "Autocarro " << numberOfBus << " da linha " << line << endl;
+	cout << "Autocarro da linha " << line << endl;
 	for (int i = 0; i < tempos.size(); i++)
 	{
 		begin = tempos.at(i).first;
@@ -401,7 +406,7 @@ void printFreeShifts(vector<Shift> freeShifts, int line, int numberOfBus)
 }
 
 //dado um mutiset de Shifts retorna um vetor de Shifts
-void freeBuses(std::multiset<Shift> &shifts, int line, int numberOfBus)
+void freeBuses(const std::multiset<Shift> &shifts, int line, int numberOfBus)
 {
 	std::multiset<Shift>::iterator it;
 	std::vector<Shift> shiftsV;
@@ -412,16 +417,17 @@ void freeBuses(std::multiset<Shift> &shifts, int line, int numberOfBus)
 	vector<Shift> freeShifts = removeShifts(shiftsV);
 	freeShifts = shiftsForLine(freeShifts, line);
 	freeShifts = shiftsForBus(freeShifts, numberOfBus);
-	printFreeShifts(freeShifts, line, numberOfBus);
+	printFreeShifts(freeShifts, line);
 	for (int i = 0; i < freeShifts.size(); i++)
 	{
 		cout << "------------------------------------" << endl;
 		cout << "Autocarro numero " << freeShifts.at(i).getBusOrderNumber() << endl;
-		cout << "Linha numero" << freeShifts.at(i).getBusLineId() << endl;
-		cout << "Conduzido pelo driver ID (-1 vazio)" << freeShifts.at(i).getDriverId() << endl;
-		cout << "Inicio do turno " << freeShifts.at(i).getStartTime() << endl;
-		cout << "Fim do turno " << freeShifts.at(i).getEndTime() << endl;
-		cout << "------------------------------------" << endl;
+		cout << "Linha numero " << freeShifts.at(i).getBusLineId() << endl;
+		cout << "Inicio do turno "; 
+		printHora(freeShifts.at(i).getStartTime(), freeShifts.at(i).getStartTime());
+		cout << "\nFim do turno ";
+		printHora(freeShifts.at(i).getStartTime(), freeShifts.at(i).getEndTime());
+		cout << "\n------------------------------------" << endl;
 	}
 }
 	
@@ -433,16 +439,14 @@ void addShift(Driver &driver, Bus &bus, std::multiset<Shift> &shifts) {
 	unsigned int busLineId, busNumber;
 
 	readNum("Introduza o numero da linha: ", busLineId);
-	readNum("Introduza o numero do autocarro: ", busNumber);
 
 
-	bus = Bus(busNumber, driver.getId(), busLineId);
+	bus = Bus(-1, driver.getId(), busLineId);
 
 
 
 	vector<Shift> freeShifts = conversionMV(shifts);
 	freeShifts = shiftsForLine(freeShifts, busLineId);
-	freeShifts = shiftsForBus(freeShifts, busNumber);
 	vector<Shift> copyShifts = freeShifts;
 
 	bool finish= false;
@@ -470,7 +474,7 @@ void addShift(Driver &driver, Bus &bus, std::multiset<Shift> &shifts) {
 			validOp = true;
 			copyShifts = freeShifts;
 			copyShifts = shiftsForDay(copyShifts, weekDay - 1);
-			printFreeShifts(copyShifts, busLineId, busNumber);
+			printFreeShifts(copyShifts, busLineId);
 			char option;
 			cout << endl;
 			ask_YN("Pretende continuar? (S/N) ", option);
@@ -496,7 +500,7 @@ void addShift(Driver &driver, Bus &bus, std::multiset<Shift> &shifts) {
 	{
 		std::cout << endl;
 		colorCout('?');
-		std::cout << "Introduza o tempo no formato Dia hh:mm (Ex: Seg 8:00): " << std::endl << endl;
+		std::cout << "Introduza o tempo no formato Dia hh:mm (Ex: Seg 8:00): " << std::endl << std::endl;
 		std::cout << " Se quiser que o condutor complete mais do que um turno seguido no mesmo autocarro, \nselecione o inicio do primeiro turno e o fim do segundo\n" << endl;
 
 		std::cout << "Inicio do servico: " << std::endl;
@@ -505,16 +509,14 @@ void addShift(Driver &driver, Bus &bus, std::multiset<Shift> &shifts) {
 		std::cout << "Fim do servico: " << std::endl;
 		endTime = timeShift();
 
-		validInsertedShift = validShift(freeShifts, startTime, endTime);
-
-
+		validInsertedShift = validShift(freeShifts, startTime, endTime, busNumber);
 
 		if (!validInsertedShift) {
 			colorCout('!');
 			cout << "O turno que inseriu e invalido." << endl;
 			char option;
 			ask_YN("Deseja repetir ? (S / N)", option);
-			if (toupper(option) == 'N') validInsertedShift = true;
+			if (toupper(option) == 'N') return;
 			else validInsertedShift = false;
 		}
 
@@ -528,10 +530,14 @@ void addShift(Driver &driver, Bus &bus, std::multiset<Shift> &shifts) {
 	int errorCode = verifyShift(driver, shift, indexInsertion);
 
 	switch (errorCode) {
-	case 0:
+	case 0:{
+		std::multiset<Shift>::iterator it;
+		it = shifts.find(Shift(busLineId, -1, busNumber, startTime, endTime));
+		driver.addMinutes(endTime - startTime);
 		shifts.insert(shift);
 		driver.insert(indexInsertion, shift);
 		break;
+	}
 
 	case 1:
 		colorCout('!');

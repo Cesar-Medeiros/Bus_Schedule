@@ -1,5 +1,5 @@
 #include "Header.h"
-
+void driverVisualize(const Driver &driver, bool displayShift = false);
 
 unsigned int addDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 	
@@ -54,10 +54,14 @@ void changeDriver(const std::string &fileName, std::vector<Driver> &drivers) {
 
 
 	
-	
 	int posDriver = ask_TestID(drivers); //Tentar perguntar Insira o ID do condutor;
 
 	if (posDriver == -1) return;
+
+
+	driverVisualize(drivers.at(posDriver));
+
+
 
 	std::cout << "\n\n|         Editar condutor        |\n";
 	std::cout << "|--------------------------------|\n";

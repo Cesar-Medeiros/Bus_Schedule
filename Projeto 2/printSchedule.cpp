@@ -8,7 +8,7 @@ void printSchedule(const std::vector<Line> &lines, int posLine) {
 	//Algoritmo errado - Só funciona para uma paragem
 
 	const uint timeStart = 8 * 60;
-	const uint timeEnd = 20 * 60;
+	const uint timeEnd = 23 * 60;
 
 
 	uint timeFirstStop = timeStart;
@@ -71,5 +71,7 @@ void printSchedule(const std::vector<Line> &lines, int posLine) {
 		//Quando comeca a proxima viagem a comecar na primeira paragem
 		timeFirstStop += lines.at(posLine).getFreq();
 	}
+
+	std::cout << std::endl;
 }
 

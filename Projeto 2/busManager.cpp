@@ -1,23 +1,16 @@
 #include "Header.h"
-
-/*
-void addBus(const std::string &fileName, std::vector<Bus> &bus);
-void changeBus(const std::string &fileName, std::vector<Bus> &bus);
-void removeBus(const std::string &fileName, std::vector<Bus> &bus);
-
-
-
-void busManager(std::string fileName, std::vector<Bus> &bus) {
+void freeBuses(const std::multiset<Shift> &shifts, int line, int numberOfBus);
+void driverVisualize(const Driver &driver, bool displayShift = true);
+void busManager(const std::multiset<Shift> &shifts, const std::vector<Driver> &drivers) {
 
 	do {
 
 		std::cout << "\n\n";
-		std::cout << " |           Gestao de autocarros         |\n";
+		std::cout << " |                 Autocarros             |\n";
 		std::cout << " |----------------------------------------|\n";
-		std::cout << " |     (1)  Novo autocarro                |\n";
-		std::cout << " |     (2)  Editar autocarro              |\n";
-		std::cout << " |     (3)  Remover autocarro             |\n";
-		std::cout << " |     (0)  Menu principal                |\n\n";
+		std::cout << " |    (1)  Visuzalizar autocarros livres  |\n";
+		std::cout << " |    (2)  Condutores sem servico completo|\n";
+		std::cout << " |    (0)  Menu principal                 |\n\n";
 
 		bool validNumber;
 
@@ -34,16 +27,52 @@ void busManager(std::string fileName, std::vector<Bus> &bus) {
 				return;
 
 			case 1:
-				addBus(fileName, bus);
+			{
+				unsigned int busLineId, orderBus;
+				readNum("Introduza o numero da linha: ", busLineId);
+				readNum("Introduza o numero do autocarro: ", orderBus);
+				freeBuses(shifts, busLineId, orderBus);
+				
 				break;
+			}
 
 			case 2:
-				changeBus(fileName, bus);
+			{
+				for (unsigned int i = 0; i < drivers.size();i++) {
+					if (drivers.at(i).getMaxWeekWorkingTime() * 60 > drivers.at(i).getMinutesUntilNow()) {
+						driverVisualize(drivers.at(i));
+						std::cout << "\n";
+						std::cout << "---------------------------\n\n";
+					}
+
+				}
+			}
 				break;
 
-			case 3:
-				removeBus(fileName, bus);
+			/*case 3:{
+				std::multiset<Shift> shiftTemp = shifts;
+
+				unsigned int busLineId, orderBus;
+				readNum("Introduza o numero da linha: ", busLineId);
+				readNum("Introduza o numero do autocarro: ", orderBus);
+
+				std::multiset<Shift>::iterator it;
+				it = shiftTemp.begin();
+				while (it != shiftTemp.end())
+				{
+					if (!(it->getBusLineId() == busLineId && it->getBusOrderNumber() == orderBus && it->getDriverId() == -1))
+					{
+						it = shiftTemp.erase(it);
+					}
+					else
+					{
+						++it;
+					}
+				}
+				
+				freeBuses(shiftTemp, busLineId, orderBus);
 				break;
+			}*/
 
 
 			default:
@@ -56,14 +85,7 @@ void busManager(std::string fileName, std::vector<Bus> &bus) {
 		} while (!validNumber);
 
 
-		char openFile;
-		ask_YN("Abrir o ficheiro (S ou N)? ", openFile); //Mais facil para debug
-		if (toupper(openFile) == 'S') {
-			writeBus(bus, fileName);
-			openNotepad(fileName);
-		}
 
 	} while (true);
 }
 
-*/

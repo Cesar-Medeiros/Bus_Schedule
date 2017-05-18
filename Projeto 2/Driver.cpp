@@ -7,6 +7,7 @@ Driver::Driver(unsigned int id, std::string name, unsigned int maxHours, unsigne
 	this->maxWeekWorkingTime = maxWeekWorkingTime;
 	this->minRestTime = minRestTime;
 	this->shifts = shifts;
+	this->minutesUntilNow = 0;
 }
 
 //////////////
@@ -41,6 +42,12 @@ std::vector<Shift> Driver::getShifts() const{
   return shifts;
 }
 
+unsigned int  Driver::getMinutesUntilNow()const {
+	return minutesUntilNow;
+}
+
+
+//Set methods
 void Driver::setId(unsigned int id) {
 	this->id = id;
 }
@@ -67,4 +74,12 @@ void Driver::setShifts(std::vector<Shift> shifts) {
 
 void Driver::insert(unsigned int index, Shift shift) {
 	shifts.insert(shifts.begin() + index, shift);
+}
+
+void Driver::setZeroMinutesUntilNow() {
+	this->minutesUntilNow = 0;
+}
+
+void Driver::addMinutes(unsigned int add) {
+	this->minutesUntilNow += add;
 }

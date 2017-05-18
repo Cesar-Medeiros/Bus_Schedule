@@ -32,6 +32,8 @@ class Bus{
 
   // other methods
 
-	void Bus::insert(unsigned int index, Shift shift);
+	void insert(unsigned int index, Shift shift);
+
+	void setBusOrderInLine(unsigned int busOrderInLine);
 };
 

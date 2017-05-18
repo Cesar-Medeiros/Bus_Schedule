@@ -51,7 +51,7 @@ void readNum(const char coutText[], uint &num, bool displaySymbol) {
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
 			colorCout('!');
-			std::cout << "Invalid Input\n\n";
+			std::cout << "Input Invalido\n\n";
 
 		}
 
@@ -89,7 +89,7 @@ void ask_YN(char text[], char &answer) {
 			std::cin.ignore(1000, '\n');
 			answer = 0;
 			colorCout('!');
-			std::cout << "Invalid Input" << std::endl;
+			std::cout << "Input Invalido" << std::endl;
 		}
 
 	} while (toupper(answer) != 'N' && toupper(answer) != 'S');

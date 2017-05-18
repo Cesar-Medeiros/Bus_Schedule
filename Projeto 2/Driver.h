@@ -13,6 +13,7 @@ private:
 	std::string name;
 	unsigned int maxHours;        // maximum duration of a shift
 	unsigned int maxWeekWorkingTime;  // maximum number of hours of work in a week
+	unsigned int minutesUntilNow;
 	unsigned int minRestTime;     // minimum number of rest hours between shifts
 	std::vector<Shift> shifts;         // assigned shifts
 
@@ -29,6 +30,7 @@ public:
 	unsigned int getMaxWeekWorkingTime() const;
 	unsigned int getMinRestTime() const;
 	std::vector<Shift> getShifts() const;
+	unsigned int getMinutesUntilNow()const;
 
 	// set methods
 
@@ -40,5 +42,8 @@ public:
 	void setShifts(std::vector<Shift> shifts);
 	
 	void insert(unsigned int index, Shift shift);
+
+	void addMinutes(unsigned int add);
+	void setZeroMinutesUntilNow();
 
 };

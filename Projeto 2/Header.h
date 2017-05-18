@@ -51,7 +51,7 @@ struct connectionInfo
 void menu(std::vector<Line> &lines, std::vector<Driver> &drivers, std::multiset<Shift> shifts, const std::string &linesFile, const std::string &driversFile, const std::string &busFile);
 void linesManager(std::string fileName, std::vector<Line> &lines);
 void driversManager(std::string fileName, std::vector<Driver> &drivers);
-void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers);
+void visualizeInfo(const std::vector<Line> &lines, const std::vector<Driver> &drivers, const std::multiset<Shift> &shifts);
 //***************************************************************************************
 
 std::multiset<Shift> createBlankShifts(std::vector<Line> &lines);

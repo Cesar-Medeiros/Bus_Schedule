@@ -95,10 +95,7 @@ void printPaths(std::vector < std::vector <connectionInfo>> paths)
 	for (uint i = 0; i < paths.size(); i++)
 	{
 		std::cout << "New path " << std::endl;
-		for (uint j = 0; j < paths.at(i).size(); j++)
-		{
-			printConnection(paths[i][j]);
-		}
+		for (uint j = 0; j < paths.at(i).size(); j++) printConnection(paths[i][j]);
 	}
 	std::cout << "--------------" << std::endl;
 
@@ -117,11 +114,16 @@ void printPath(std::vector <connectionInfo> path)
 		line.push_back(path.at(i).line);
 		time += path.at(i).time;
 	}
-	std::cout << "The trip will take you " << time << " minutes" << std::endl;
+	std::cout << std::endl;
+	std::cout << "A viagem ira demorar " << time << " minutos" << std::endl;
 	for (int i = 0; i < path.size(); i++)
 	{
-		std::cout << "Stop " << stops.at(i) << "---" << "Line " << line.at(i) << std::endl;
+		
+		std::cout << "Paragem " << " --- " << stops.at(i);
+		if (i != 0) std::cout << " --- " << " Linha " << line.at(i) << std::endl;
+		else std::cout <<" ---  Paragem Inicial" << std::endl;
 	}
+	std::cout << std::endl;
 }
 
 //validPaths
@@ -250,13 +252,13 @@ std::vector <connectionInfo> fasterCompleted(std::vector < std::vector <connecti
 void printFinalPaths(std::vector < std::vector <connectionInfo>> paths)
 {
 	std::cout << "----------------------------" << std::endl;
-	std::cout << "The path(s) are " << std::endl;
-	std::cout << "----" << std::endl;
+	std::cout << "Os caminhos encontrados foram:" << std::endl;
+	std::cout << std::endl << std::endl;
 	for (int i = 0; i < paths.size(); i++)
 	{
-		std::cout << "Rout " << i + 1 << std::endl;
+		std::cout << "Caminho " << i + 1 << std::endl;
 		printPath(paths.at(i));
-		std::cout << "----" << std::endl;
+		std::cout << std::endl;
 	}
 }
 
@@ -327,7 +329,6 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 			//adiciona caminhos encontrados ao vetor de caminhos completos
 			for (int i = 0; i < indexValidPaths.size(); i++)
 			{
-				std::cout << "------------------Caminho encontrado-------------------" << std::endl;
 				completedPaths.push_back(paths.at(indexValidPaths.at(i)));
 
 			}
@@ -418,5 +419,5 @@ void timeBetween2Stops(const std::vector<Line> &lines)
 		printFinalPaths(refinedPaths);
 
 	}
-	else std::cout << "O algoritmo n?o encontrou solucao" << std::endl;
+	else std::cout << "O algoritmo nao encontrou solucao" << std::endl;
 }
